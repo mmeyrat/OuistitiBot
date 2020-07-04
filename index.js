@@ -10,6 +10,8 @@ client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`)
 });
 
+client.user.setActivity(`this won't appear in the bot's custom status!`, {type: 4})
+
 client.on("message", msg => {
   var chan = client.channels.cache.get(msg.channel.id);
   var submsg = msg.toString().split(" ");
