@@ -1,69 +1,43 @@
 const Discord = require("discord.js");
+const config = require("./config");
+const fs = require("fs");
 const client = new Discord.Client();
 
-var hein = ["bécile", "deux", "dien"];
-var non = ["ante", "bril", "chalant", "obstant", "uplet"];
-var si = ["fflet", "lence", "prine", "rano", "tron"];
-var qui = ["gnon", "quette"];
+var json = JSON.parse(fs.readFileSync("mots.json", 'utf8'));
+var commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
+
+var test = 0;
+
+client.commands = new Discord.Collection();
+
+for (var file of commandFiles) {
+	var command = require("./commands/" + file);
+	client.commands.set(command.name, command);
+}
 
 client.on("ready", () => {
-  console.log(`Logged in as ${client.user.tag}!`)
+  console.log("Connecté!")
+  client.user.setActivity("finir les mots")
 });
-
-client.user.setActivity(`this won't appear in the bot's custom status!`, {type: 4})
 
 client.on("message", msg => {
   var chan = client.channels.cache.get(msg.channel.id);
-  var submsg = msg.toString().split(" ");
-  var msgUpper = submsg[submsg.length - 1].normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase();
+  var args = msg.content.slice(1).split(" ");
+	var command = args.shift().toLowerCase();
 
-  switch (msgUpper) {
-    case "AH":
-      chan.send("B");
-      break;
-    case "ATTENDS":
-      chan.send("tion");
-      break;
-    case "CA":
-      chan.send("lad");
-      break;
-    case "COMMENT":
-      chan.send("tateur");
-      break;
-    case "DIT":
-      chan.send("ctionnaire");
-      break;
-    case "HEIN":
-      chan.send(hein[Math.floor(Math.random() * hein.length)]);
-      break;
-    case "NAN":
-      chan.send("cy");
-      break;
-    case "NON":
-      chan.send(non[Math.floor(Math.random() * non.length)]);
-      break;
-    case "OUI":
-      chan.send("stiti");
-      break;
-    case "OUAIS":
-      chan.send("stern");
-      break;
-    case "QUI":
-      chan.send(qui[Math.floor(Math.random() * qui.length)]);
-      break;
-    case "QUOI":
-      chan.send("feur");
-      break;
-    case "SI":
-      chan.send(si[Math.floor(Math.random() * si.length)]);
-      break;
-    case "VOILA":
-      chan.send("ctée");
-      break;
-    case "YES":
-      chan.send("terday");
-      break;
+	if (msg.toString().startsWith("$") && client.commands.has(command)) {
+		client.commands.get(command).execute(chan, args);
+  }
+  else {
+    var subMsg = msg.toString().split(" ");
+    var processedMsg = subMsg[subMsg.length - 1].normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+    if (processedMsg in json.mots && msg.author.id != client.user.id) {    
+      chan.send(json.mots[processedMsg][Math.floor(Math.random() * json.mots[processedMsg].length)]);
+    }
+    chan.send(test);
   }
 });
 
-client.login("NzI1MzcwNjY5Mjg5OTYzNTIx.XvN7dg.bGFMMhNmMXAiJ0FqZuZMPgUejyE");
+client.login(config.TOKEN);
+
