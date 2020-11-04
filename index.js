@@ -29,7 +29,7 @@ client.on("message", msg => {
 
   if (processedMsg in json.mots && msg.author.id != client.user.id) {
     var delays = JSON.parse(fs.readFileSync("delays.json", 'utf8'));
-    if (delays.serveurs[guild] != null || delays.serveurs[guild][1] != null) {
+    if (delays.serveurs[guild] != null && delays.serveurs[guild][1] != null) {
       var lastMessageDate = new Date(delays.serveurs[guild][1]);
       lastMessageDate.setMinutes(lastMessageDate.getMinutes() + delays.serveurs[guild][0]);
       var currentDate = new Date(Date.now());
@@ -44,7 +44,7 @@ client.on("message", msg => {
       fs.writeFileSync("delays.json", newLastDate);
     }
   }
-  
+
   if (msg.toString().startsWith("o!") && client.commands.has(command)) {
     client.commands.get(command).execute(chan, guild, args);
   }

@@ -8,7 +8,7 @@ module.exports = {
             .setTitle("Aide")
             .addField("Commandes", 
             "`o!aide`\n" + 
-            "`o!delai`\n" +
+            "`o!delai <nombre>`\n" +
             "`o!mots`"
             , true)
             .addField("Descriptions", 
