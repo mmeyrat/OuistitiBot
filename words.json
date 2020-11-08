@@ -1,15 +1,30 @@
 {
   "mots": {
+    "a": [
+      "b",
+      "tend",
+      "tentat",
+      "ttention"
+    ],
     "ah": [
-      "b"
+      "b",
+      "tend",,
+      "tentat",
+      "ttention"
+    ],
+    "attend": [
+      "tat",
+      "tion"
     ],
     "attends": [
+      "tat",
       "tion"
     ],
     "ca": [
       "lade"
     ],
     "comment": [
+      "taire",
       "tateur"
     ],
     "dit": [
@@ -19,14 +34,29 @@
       "deux",
       "dien"
     ],
+    "mais": [
+      "diateur",
+      "tier"
+    ],
+    "meh": [
+      "diateur",
+      "tier"
+    ],
     "non": [
       "chalant",
-      "bril"
+      "bril",
+      "obstant"
     ],
     "oui": [
       "stiti"
     ],
+    "oe": [
+      "stern"
+    ],
     "ouais": [
+      "stern"
+    ],
+    "ouai": [
       "stern"
     ],
     "qui": [
@@ -46,7 +76,11 @@
       "tron"
     ],
     "so": [
+      "cisse",
       "cisson"
+    ],
+    "ui": [
+      "stiti"
     ],
     "voila": [
       "ctée"

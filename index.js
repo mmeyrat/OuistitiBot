@@ -24,7 +24,7 @@ client.on("message", msg => {
   var args = msg.content.slice(2).split(" ");
   var command = args.shift().toLowerCase();
 
-  var subMsg = msg.toString().split(" ");
+  var subMsg = msg.toString().replace(/\:\)+|x\)|xD|XD|\:D|\(+\:|C+\:|;-;|'_'/g, "").replace(/[^\w\s]|_/g, "").trim().split(" ");//enleve quelques emojis et la ponctuation
   var processedMsg = subMsg[subMsg.length - 1].normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
   if (processedMsg in json.mots && msg.author.id != client.user.id) {
@@ -51,4 +51,3 @@ client.on("message", msg => {
 });
 
 client.login(config.TOKEN);
-
