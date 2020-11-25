@@ -23,9 +23,8 @@ client.on("message", msg => {
   var guild = msg.guild.id;
   var args = msg.content.slice(2).split(" ");
   var command = args.shift().toLowerCase();
-
   var subMsg = msg.toString().split(" ");
-  var processedMsg = subMsg[subMsg.length - 1].normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  var processedMsg = subMsg[subMsg.length - 1].normalize("NFD").replace(/[\u0300-\u036f]|[^\w\s]/g, "").toLowerCase();
 
   if (processedMsg in json.mots && msg.author.id != client.user.id) {
     var delays = JSON.parse(fs.readFileSync("delays.json", 'utf8'));
@@ -45,7 +44,7 @@ client.on("message", msg => {
     }
   }
 
-  if (msg.toString().startsWith("o!") && client.commands.has(command)) {
+  if (msg.toString().toLowerCase().startsWith("o!") && client.commands.has(command)) {
     client.commands.get(command).execute(chan, guild, args);
   }
 });
