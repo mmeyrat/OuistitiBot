@@ -1,22 +1,29 @@
 module.exports = {
     name: "blague",
-    description: "Envoie une blague aléatoire",
+    title: "Blague",   
+    arguments: ["type"],
+    description: "Envoie une blague du type précisé, parmi les types suivants `global`, `dev`, `dark`, `limit`, `beauf`, `blondes`. Si aucun type n'est précisé, une blague aléatoire est envoyée.",
     async execute(chan, guild, args) {
+        const config = require("../config");
         const Discord = require("discord.js");
         const fetch = require("node-fetch");
 
-        var url = "https://www.blagues-api.fr/api/random";
+        var url = "random";
         var types = ["global", "dev", "dark", "limit", "beauf", "blondes"];
 
         if (args[0] != null && !types.includes(args[0])) {
+            var embed = new Discord.MessageEmbed()
+                .setColor("#AC8A4D")
+                .setDescription("Veuillez utiliser un type de blague existant")
+            chan.send(embed);
             return;
         } else if (types.includes(args[0])) {
-            url = "https://www.blagues-api.fr/api/type/" + args[0] + "/random";
+            url = "type/" + args[0] + "/random";
         }
 
-        var json = await fetch(url, {
+        var json = await fetch("https://www.blagues-api.fr/api/" + url, {
             headers: {
-                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMjY2NzA3NjQ1ODAzNjU5Mjc0IiwibGltaXQiOjEwMCwia2V5IjoibE1ad2JXVmxjREk1OExkbVp4UWlZQmVSWXA4NkVEWGNyYmgzdFlobm9vMTk0bFJEcnQiLCJjcmVhdGVkX2F0IjoiMjAyMC0xMS0yNVQyMjoxNDo0NyswMTowMCIsImlhdCI6MTYwNjMzODg4N30.WwGWyO97ZrToTk9xTPVOJQPhE6cqo46PK7zwDXaFwv0"
+                "Authorization": "Bearer " + config.API_TOKEN,
             }
         }).then(response => response.json());
 

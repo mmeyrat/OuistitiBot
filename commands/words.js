@@ -1,6 +1,8 @@
 module.exports = {
     name: "mots",
-    description: "Affiche la liste des mots pris en compte",
+    title: "Mots & suffixes",
+    arguments: [""],
+    description: "Affiche la liste des mots pris en compte, ansi que leurs suffixes.",
     execute(chan, guild, args) {
         const Discord = require("discord.js");
         const fs = require("fs");

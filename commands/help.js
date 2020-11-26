@@ -1,21 +1,27 @@
 module.exports = {
     name: "aide",
-    description: "Affiche l'aide",
-    execute(chan, guild, args) {
+    title: "Aide",
+    arguments: [""],
+    description: "Affiche l'aide.",
+    async execute(chan, guild, args) {
         const Discord = require("discord.js");
+        const fs = require('fs');
+
         var embed = new Discord.MessageEmbed()
             .setColor("#AC8A4D")
-            .setTitle("Aide")
-            .addField("Commandes", 
-            "`o!aide`\n" + 
-            "`o!delai <nombre>`\n" +
-            "`o!mots`"
-            , true)
-            .addField("Descriptions", 
-            "Affiche l'aide\n" +
-            "Définit le délai en minutes entre chaque message\n" +
-            "Affiche la liste des mots pris en compte, ansi que leurs suffixes\n"                     
-            , true)
+            .setTitle("Liste des commandes");
+
+        fs.readdirSync("./commands").forEach(file => {
+            var command = require("./" + file);
+            var nameAndArgs = "`o!" + command.name;
+            for (var i = 0; i < command.arguments.length; i++) {
+                if (command.arguments[i] != "") {
+                    nameAndArgs += " <" + command.arguments[i] + ">";
+                }
+            }
+            embed.addField(command.title, nameAndArgs + "` : " + command.description);
+        });
+
         chan.send(embed);
     }
 }

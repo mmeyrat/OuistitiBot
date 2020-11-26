@@ -1,14 +1,16 @@
 module.exports = {
     name: "delai",
-    description: "Définit le délai en minutes entre chaque message",
+    title: "Délai",
+    arguments: ["minutes"],
+    description: "Définit le délai en minutes entre chaque message. Le délai doit être compris entre 0 et 10 000.",
     execute(chan, guild, args) {
         const Discord = require("discord.js");
         const fs = require("fs");
 
-        if (args[0] == null || isNaN(args[0])) {
+        if (args[0] == null || isNaN(args[0]) || args[0] < 0 || args[0] > 10000) {
             var embed = new Discord.MessageEmbed()
                 .setColor("#AC8A4D")
-                .setDescription("Veuillez préciser le délai en minutes")
+                .setDescription("Veuillez préciser un délai correct en minutes")
             chan.send(embed);
             return;
         }
