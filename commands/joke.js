@@ -29,7 +29,7 @@ module.exports = {
 
         var embed = new Discord.MessageEmbed()
             .setColor("#AC8A4D")
-            .setDescription(json.joke + "\n*→ " + json.answer + "*")
+            .setDescription(json.joke + "\n*→ " + json.answer.trim() + "*")
             .setFooter(json.type);
         chan.send(embed);
     }
