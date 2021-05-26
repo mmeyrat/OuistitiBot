@@ -14,7 +14,7 @@ module.exports = {
         if (args[0] != null && !types.includes(args[0])) {
             var embed = new Discord.MessageEmbed()
                 .setColor("#AC8A4D")
-                .setDescription("Veuillez utiliser un type de blague existant")
+                .setDescription("Veuillez utiliser un type de blague existant (voir `o!aide`)")
             chan.send(embed);
             return;
         } else if (types.includes(args[0])) {
