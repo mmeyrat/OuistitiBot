@@ -27,20 +27,24 @@ client.on("message", msg => {
   var processedMsg = subMsg[subMsg.length - 1].normalize("NFD").replace(/[\u0300-\u036f]|[^\w\s]/g, "").toLowerCase();
 
   if (processedMsg in json.mots && msg.author.id != client.user.id) {
-    var delays = JSON.parse(fs.readFileSync("delays.json", 'utf8'));
-    if (delays.serveurs[guild] != null && delays.serveurs[guild][1] != null) {
-      var lastMessageDate = new Date(delays.serveurs[guild][1]);
-      lastMessageDate.setMinutes(lastMessageDate.getMinutes() + delays.serveurs[guild][0]);
+    var data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
+
+    if (data.servers[guild] != null && data.servers[guild].lastMsg != null) { // check if there's delay
+      var lastMessageDate = new Date(data.servers[guild].lastMsg);
+      lastMessageDate.setMinutes(lastMessageDate.getMinutes() + data.servers[guild].delay);
       var currentDate = new Date(Date.now());
+
       if (currentDate <= lastMessageDate) {
         return;
       }
     }
+
     chan.send(json.mots[processedMsg][Math.floor(Math.random() * json.mots[processedMsg].length)]);
-    if (delays.serveurs[guild] != null) {
-      delays.serveurs[guild][1] = new Date(Date.now());
-      var newLastDate = JSON.stringify(delays);
-      fs.writeFileSync("delays.json", newLastDate);
+
+    if (data.servers[guild] != null) {
+      data.servers[guild]["lastMsg"] = new Date(Date.now());
+      var newLastDate = JSON.stringify(data);
+      fs.writeFileSync("data.json", newLastDate);
     }
   }
 

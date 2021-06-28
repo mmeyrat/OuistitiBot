@@ -7,9 +7,9 @@ module.exports = {
         const Discord = require("discord.js");
         const fs = require("fs");
 
-        var delays = JSON.parse(fs.readFileSync("delays.json", 'utf8'));
+        var data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
 
-        if (delays.serveurs[guild] == null) {
+        if (data.servers[guild] == null) {
             var embed = new Discord.MessageEmbed()
                 .setColor("#AC8A4D")
                 .setDescription("Aucune donnée à supprimer")
@@ -17,9 +17,9 @@ module.exports = {
             return;
         }
 
-        delete delays.serveurs[guild];
-        var json = JSON.stringify(delays);
-        fs.writeFileSync("delays.json", json);
+        delete data.servers[guild];
+        var json = JSON.stringify(data);
+        fs.writeFileSync("data.json", json);
 
         var embed = new Discord.MessageEmbed()
             .setColor("#AC8A4D")

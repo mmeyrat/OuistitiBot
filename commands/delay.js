@@ -15,15 +15,15 @@ module.exports = {
             return;
         }
 
-        var delays = JSON.parse(fs.readFileSync("delays.json", 'utf8'));
+        var data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
 
-        if (delays.serveurs[guild] == null) {
-            delays.serveurs[guild] = [];
+        if (data.servers[guild] == null) {
+            data.servers[guild] = {};
         }
 
-        delays.serveurs[guild][0] = Number(args[0]);
-        var json = JSON.stringify(delays);
-        fs.writeFileSync("delays.json", json);
+        data.servers[guild].delay = Number(args[0]);
+        var json = JSON.stringify(data);
+        fs.writeFileSync("data.json", json);
 
         var embed = new Discord.MessageEmbed()
             .setColor("#AC8A4D")
