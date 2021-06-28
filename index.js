@@ -28,7 +28,7 @@ client.on("message", msg => {
 	
 	if (msg.toString().toLowerCase().startsWith("o!") && client.commands.has(command)) {
 		client.commands.get(command).execute(chan, guild, args);
-
+		
 	} else if (msg.author.id != client.user.id) {
 		var data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
 

@@ -21,13 +21,17 @@ module.exports = {
 			data.servers[guild] = {};
 		}
 
-		data.servers[guild].delay = Number(args[0]);
+		if (args[0] != 0) {
+			data.servers[guild].delay = Number(args[0]);
+		} else if (data.servers[guild].delay != null) {
+			delete data.servers[guild].delay;
+		}
 		var json = JSON.stringify(data, null, "\t");
 		fs.writeFileSync("data.json", json);
 
 		var embed = new Discord.MessageEmbed()
 			.setColor("#AC8A4D")
-			.setDescription("Il y a maintenant **" + args[0] + "** minutes d'attente entre chaque message");
+			.setDescription("Il y a maintenant **" + Number(args[0]) + "** minutes d'attente entre chaque message");
 		chan.send(embed);
 	}
 }
