@@ -43,7 +43,7 @@ client.on("message", msg => {
 
     if (data.servers[guild] != null) {
       data.servers[guild]["lastMsg"] = new Date(Date.now());
-      var newLastDate = JSON.stringify(data);
+      var newLastDate = JSON.stringify(data, null, "\t");
       fs.writeFileSync("data.json", newLastDate);
     }
   }

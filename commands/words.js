@@ -7,23 +7,37 @@ module.exports = {
         const Discord = require("discord.js");
         const fs = require("fs");
 
-        var json = JSON.parse(fs.readFileSync("words.json", 'utf8'));
+        var data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
 
-        var wordField = [];
-        var suffixField = [];
+        var defaultField = [];
+        var customField = [];
+        var defaultCount = 0;
         var i = 0;
 
-        for (var word in json.mots) {
-            wordField[i] = word;
-            suffixField[i] = json.mots[word];
+        for (var word in data.words) {
+            defaultField[i] = word + " - " + data.words[word];
+            defaultCount += data.words[word].length;
             i++;
         }
+
+        if (data.servers[guild] && data.servers[guild].words != null) {
+            i = 0
+            for (var word in data.servers[guild].words) {
+                customField[i] = word + " - " + data.servers[guild].words[word];
+                i++;
+            }
+        }
+        
 
         var embed = new Discord.MessageEmbed()
             .setColor("#AC8A4D")
             .setTitle("Liste de mots & suffixes")
-            .addField("Mots", wordField.join('\n'), true)
-            .addField("Suffixes", suffixField.join('\n'), true);
+            .addField("Mots par défaut (" + defaultCount + " suffixes)", defaultField.join('\n'), true);
+
+        if (customField.length > 0) {
+            embed.addField("Mots personnalisés (" + data.servers[guild].wordCount + " suffixes)", customField.join('\n'), true);
+        }   
+
         chan.send(embed);
     }
 }

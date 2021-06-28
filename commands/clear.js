@@ -18,7 +18,7 @@ module.exports = {
         }
 
         delete data.servers[guild];
-        var json = JSON.stringify(data);
+        var json = JSON.stringify(data, null, "\t");
         fs.writeFileSync("data.json", json);
 
         var embed = new Discord.MessageEmbed()

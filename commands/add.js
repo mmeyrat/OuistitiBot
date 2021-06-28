@@ -31,10 +31,10 @@ module.exports = {
         if (data.servers[guild].words[args[0]] == null) {
             data.servers[guild].words[args[0]] = []
         }
-        
+
         data.servers[guild].words[args[0]].push(args[1]);
         data.servers[guild].wordCount++;
-        var json = JSON.stringify(data);
+        var json = JSON.stringify(data, null, "\t");
         fs.writeFileSync("data.json", json);
 
         var embed = new Discord.MessageEmbed()

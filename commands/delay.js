@@ -22,7 +22,7 @@ module.exports = {
         }
 
         data.servers[guild].delay = Number(args[0]);
-        var json = JSON.stringify(data);
+        var json = JSON.stringify(data, null, "\t");
         fs.writeFileSync("data.json", json);
 
         var embed = new Discord.MessageEmbed()
