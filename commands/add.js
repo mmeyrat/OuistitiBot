@@ -9,10 +9,9 @@ module.exports = {
 
 		processedWord = args[0].normalize("NFD").replace(/[\u0300-\u036f]|[^\w\s]/g, "").toLowerCase();
 
-		if (processedWord == null || args[1] == null 
+		if (processedWord == null || args[1] == null || args[2] != null
 			|| processedWord.length > 30 || args[1].length > 30 
 			|| processedWord.length == 0 || args[1].length == 0) {
-			console.log(args[1]);
 			var embed = new Discord.MessageEmbed()
 				.setColor("#AC8A4D")
 				.setDescription("Mot ou suffixe incorrect (voir `o!aide`)");

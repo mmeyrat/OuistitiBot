@@ -7,7 +7,7 @@ module.exports = {
 		const Discord = require("discord.js");
 		const fs = require("fs");
 
-		if (args[0] == null || isNaN(args[0]) || args[0] < 0 || args[0] > 10000) {
+		if (args[0] == null || args[1] != null || isNaN(args[0]) || args[0] < 0 || args[0] > 10000) {
 			var embed = new Discord.MessageEmbed()
 				.setColor("#AC8A4D")
 				.setDescription("Veuillez préciser un délai correct en minutes (voir `o!aide`)");

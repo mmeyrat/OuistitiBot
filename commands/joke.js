@@ -11,7 +11,7 @@ module.exports = {
 		var url = "random";
 		var types = ["global", "dev", "dark", "limit", "beauf", "blondes"];
 
-		if (args[0] != null && !types.includes(args[0])) {
+		if (args[0] != null && !types.includes(args[0]) || args[1] != null) {
 			var embed = new Discord.MessageEmbed()
 				.setColor("#AC8A4D")
 				.setDescription("Veuillez utiliser un type de blague existant (voir `o!aide`)");
