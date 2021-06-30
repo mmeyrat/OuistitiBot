@@ -1,11 +1,13 @@
 const Discord = require("discord.js");
-const config = require("./config");
 const fs = require("fs");
+const config = require("./config");
+const topgg = require('@top-gg/sdk');
 const client = new Discord.Client();
+const topggApi = new topgg.Api(config.TOPGG_TOKEN);
 
 var commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
-
 client.commands = new Discord.Collection();
+
 var status = [["PLAYING", "finir les mots"], ["PLAYING", "Donkey Kong"], ["WATCHING", "une banane"], ["LISTENING", "les gens se plaindre"], ["LISTENING", "- ille"]];
 
 for (var file of commandFiles) {
@@ -25,6 +27,9 @@ client.on("ready", () => {
 			client.user.setActivity(status[id][1], { type: status[id][0] });
 			isHelp = true;
 		}
+		topggApi.postStats({
+			serverCount: client.guilds.cache.size
+		})
     }, 60000 * 30);
 });
 

@@ -23,7 +23,7 @@ module.exports = {
 
 		var json = await fetch("https://www.blagues-api.fr/api/" + url, {
 			headers: {
-				"Authorization": "Bearer " + config.API_TOKEN,
+				"Authorization": "Bearer " + config.JOKE_TOKEN,
 			}
 		}).then(response => response.json());
 
