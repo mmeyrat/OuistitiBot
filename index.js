@@ -3,10 +3,10 @@ const config = require("./config");
 const fs = require("fs");
 const client = new Discord.Client();
 
-var json = JSON.parse(fs.readFileSync("words.json", 'utf8'));
 var commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
 
 client.commands = new Discord.Collection();
+var status = [["PLAYING", "finir les mots"], ["PLAYING", "Donkey Kong"], ["WATCHING", "une banane"], ["LISTENING", "les gens se plaindre"], ["LISTENING", "- ille"]];
 
 for (var file of commandFiles) {
 	var command = require("./commands/" + file);
@@ -15,7 +15,17 @@ for (var file of commandFiles) {
 
 client.on("ready", () => {
 	console.log("Connecté!");
-	client.user.setActivity("finir les mots");
+	var isHelp = true;
+	setInterval(() => {
+		if(isHelp) { 
+			client.user.setActivity("o!aide", { type: "WATCHING" });
+			isHelp = false;
+		} else {
+			var id = Math.floor(Math.random() * (status.length - 1) + 1);
+			client.user.setActivity(status[id][1], { type: status[id][0] });
+			isHelp = true;
+		}
+    }, 60000 * 30);
 });
 
 client.on("message", msg => {
