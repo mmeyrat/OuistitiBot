@@ -18,8 +18,13 @@ module.exports = {
 			.setThumbnail((await client.users.fetch("725370669289963521")).displayAvatarURL())
 			.setDescription("Un bot simple qui répond à vos messages pour vous embêter.");
 		
-		if (data.servers[guild] != null && data.servers[guild].delay != null) {
-			embed.addField("Délai actuel :", data.servers[guild].delay + " minutes");
+		if (data.servers[guild] != null) {
+			if (data.servers[guild].delay != null) {
+				embed.addField("Délai actuel :", data.servers[guild].delay + " minutes");
+			}
+			if (data.servers[guild].isDefaultDisabled) {
+				embed.addField("Mots par défaut :", " désactivés");
+			}
 		}
 
 		embed.addField("Page de présentation du bot :", "https://top.gg/bot/725370669289963521")
