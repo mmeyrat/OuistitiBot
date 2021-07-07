@@ -1,6 +1,6 @@
 module.exports = {
 	name: "defaut",
-	title: "Activer/désactiver",
+	title: "Activer/désactiver les mots",
 	arguments: [""],
 	description: "Active ou désactive les mots/suffixes par défaut.",
 	execute(chan, guild, args) {

@@ -1,8 +1,8 @@
 module.exports = {
 	name: "enlever",
 	title: "Enlever un mot/suffixe",
-	arguments: ["suffixe"],
-	description: "Enlève un mot.",
+	arguments: ["mot", "suffixe"],
+	description: "Enlève un mot précédemment ajouté de la liste des mots personnalisés.",
 	execute(chan, guild, args) {
 		const fs = require("fs");
 

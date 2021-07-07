@@ -2,22 +2,20 @@
 
 OuistitiBot a pour vocation d'envoyer des messages en réponse aux votres. Si vous aimez les blagues du type "quoi ? - feur" ce bot est fait pour vous. 
 Lorsque la fin d'un de vos messages envoyé dans un salon est reconnue par le bot, il vous répondra de manière appropriée.
-Plusieurs commandes sont disponibles afin de gérer ce trublion.
+Plusieurs commandes sont disponibles afin gérer ce trublion.
 
 
 ## Commandes
 
-```o!aide``` : Affiche l'aide.
+- ```o!aide``` pour avoir des détails sur l'utilisation des commandes.
 
-```o!info``` : Affiche les informations générales relatives au bot.
+- ```o!ajouter``` et ```o!enlever``` pour ajouter vos propres mots à la liste du bot.
 
-```o!delai <minutes>``` : Définit le délai en minutes entre chaque message. Le délai doit être un nombre compris entre 0 et 10 000 (inclus). Cette commande permet ainsi d'empêcher d'inonder vos conversations.
+- ```o!delai``` permet de mettre un délai entre les messages envoyés par le bot.
 
-```o!effacer``` : Supprime toutes les données sauvegardées par le bot de ce serveur. Les données sauvegardées correspondent à celles de la commande délai (nombre de minutes et date du dernier message envoyé par le bot).
+- ```o!blague``` envoie une blague aléatoire parmi plusieurs types disponibles comme `global`, `dev`, `dark`, `blondes`... 
 
-```o!mots``` : Affiche la liste des mots pris en compte, ansi que leurs suffixes.
-
-```o!blague <type>``` : Envoie une blague du type précisé, parmi les types suivants `global`, `dev`, `dark`, `limit`, `beauf`, `blondes`. Si aucun type n'est précisé, une blague aléatoire est envoyée.
+- et bien d'autres à découvrir !
 
 
 ## Liens utiles
