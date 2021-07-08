@@ -11,7 +11,7 @@ Plusieurs commandes sont disponibles afin gérer ce trublion.
 
 - ```o!ajouter``` et ```o!enlever``` pour ajouter vos propres mots à la liste du bot.
 
-- ```o!delai``` permet de mettre un délai entre les messages envoyés par le bot.
+- ```o!delai``` permet de mettre un délai entre les messages envoyés par le bot pour l'empêcher d'inonder vos conversations.
 
 - ```o!blague``` envoie une blague aléatoire parmi plusieurs types disponibles comme `global`, `dev`, `dark`, `blondes`... 
 

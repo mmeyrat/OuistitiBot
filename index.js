@@ -79,6 +79,15 @@ client.on("message", msg => {
 			var newLastDate = JSON.stringify(data, null, "\t");
 			fs.writeFileSync("data.json", newLastDate);
 		}
+
+		if (data.servers[guild] != null) {
+			if (data.servers[guild].msgCount == null) {
+				data.servers[guild].msgCount = 0;
+			}
+			data.servers[guild].msgCount++;
+			var newMsgCount = JSON.stringify(data, null, "\t");
+			fs.writeFileSync("data.json", newMsgCount);
+		}
 	}
 });
 

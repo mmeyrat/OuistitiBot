@@ -29,7 +29,7 @@ module.exports = {
 
 		embed.addField("Page de présentation du bot :", "https://top.gg/bot/725370669289963521")
 			.addField("Rejoindre le serveur Discord OuistitiBot officiel :", "https://discord.gg/3DbtncXpjC")
-			.setFooter("Version 1.0");
+			.setFooter("Version 2.0");
 		chan.send(embed);
 	}
 }
