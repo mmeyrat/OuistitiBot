@@ -3,7 +3,7 @@ module.exports = {
 	title: "Délai",
 	arguments: ["minutes"],
 	description: "Définit le délai en minutes entre chaque message. Le délai doit être un nombre compris entre 0 et 10 000 (inclus).",
-    example: " 60",
+	example: " 60",
 	execute(chan, guild, args) {
 		const Discord = require("discord.js");
 		const fs = require("fs");

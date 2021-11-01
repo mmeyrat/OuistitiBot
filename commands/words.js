@@ -3,7 +3,7 @@ module.exports = {
 	title: "Afficher les mots/suffixes",
 	arguments: [""],
 	description: "Affiche la liste des mots pris en compte, ansi que leurs suffixes.",
-    example: "",
+	example: "",
 	execute(chan, guild, args) {
 		const Discord = require("discord.js");
 		const fs = require("fs");

@@ -3,7 +3,7 @@ module.exports = {
 	title: "Activer/désactiver les mots",
 	arguments: [""],
 	description: "Active ou désactive les mots/suffixes par défaut.",
-    example: "",
+	example: "",
 	execute(chan, guild, args) {
 		const Discord = require("discord.js");
 		const fs = require("fs");
@@ -14,14 +14,14 @@ module.exports = {
 			data.servers[guild] = {};
 		}
 
-        var msg;
+		var msg;
 		if (data.servers[guild].isDefaultDisabled == null) {
-            data.servers[guild].isDefaultDisabled = true;
-            msg = "Les mots par défaut sont désactivés";
-        } else {
-            delete data.servers[guild].isDefaultDisabled;
-            msg = "Les mots par défaut sont activés";
-        }
+			data.servers[guild].isDefaultDisabled = true;
+			msg = "Les mots par défaut sont désactivés";
+		} else {
+			delete data.servers[guild].isDefaultDisabled;
+			msg = "Les mots par défaut sont activés";
+		}
 
 		var json = JSON.stringify(data, null, "\t");
 		fs.writeFileSync("data.json", json);
