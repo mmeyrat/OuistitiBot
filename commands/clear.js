@@ -3,6 +3,7 @@ module.exports = {
 	title: "Effacer les données",
 	arguments: [""],
 	description: "Supprime toutes les données sauvegardées par le bot de ce serveur.",
+    example: "",
 	execute(chan, guild, args) {
 		const Discord = require("discord.js");
 		const fs = require("fs");

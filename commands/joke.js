@@ -3,6 +3,7 @@ module.exports = {
 	title: "Blague",   
 	arguments: ["type"],
 	description: "Envoie une blague du type précisé, parmi les types suivants `global`, `dev`, `dark`, `limit`, `beauf`, `blondes`. Si aucun type n'est précisé, une blague aléatoire est envoyée.",
+    example: " global",
 	async execute(chan, guild, args) {
 		const config = require("../config");
 		const Discord = require("discord.js");

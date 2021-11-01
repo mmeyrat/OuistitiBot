@@ -3,6 +3,7 @@ module.exports = {
 	title: "Informations",
 	arguments: [""],
 	description: "Affiche les informations générales relatives au bot.",
+    example: "",
 	async execute(chan, guild, args) {
 		const Discord = require("discord.js");
 		const fs = require("fs");
