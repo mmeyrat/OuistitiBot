@@ -9,14 +9,14 @@ module.exports = {
 		const fs = require("fs");
 
 		if (args[0] == null || args[1] != null || isNaN(args[0]) || args[0] < 0 || args[0] > 10000) {
-			var embed = new Discord.MessageEmbed()
+			let embed = new Discord.MessageEmbed()
 				.setColor("#AC8A4D")
 				.setDescription("Veuillez préciser un délai correct en minutes (voir `o!aide`)");
 			chan.send(embed);
 			return;
 		}
 
-		var data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
+		let data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
 
 		if (data.servers[guild] == null) {
 			data.servers[guild] = {};
@@ -27,10 +27,11 @@ module.exports = {
 		} else if (data.servers[guild].delay != null) {
 			delete data.servers[guild].delay;
 		}
-		var json = JSON.stringify(data, null, "\t");
+
+		let json = JSON.stringify(data, null, "\t");
 		fs.writeFileSync("data.json", json);
 
-		var embed = new Discord.MessageEmbed()
+		let embed = new Discord.MessageEmbed()
 			.setColor("#AC8A4D")
 			.setDescription("Il y a maintenant **" + Number(args[0]) + "** minutes d'attente entre chaque message");
 		chan.send(embed);

@@ -7,7 +7,7 @@ module.exports = {
 	execute(chan, guild, args) {
 		const fs = require("fs");
 
-		processedWord = args[0].normalize("NFD").replace(/[\u0300-\u036f]|[^\w\s]/g, "").toLowerCase();
+		let processedWord = args[0].normalize("NFD").replace(/[\u0300-\u036f]|[^\w\s]/g, "").toLowerCase();
 
 		if (processedWord == null || args[1] == null || args[2] != null 
 			|| processedWord.length > 30 || args[1].length > 30 
@@ -16,7 +16,7 @@ module.exports = {
 			return;
 		}
 
-		var data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
+		let data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
 
 		if (data.servers[guild] == null) {
 			data.servers[guild] = {};
@@ -33,9 +33,9 @@ module.exports = {
 		}
 
 		if (args[0] in data.servers[guild].words) {
-			var word = data.servers[guild].words[args[0]];
+			let word = data.servers[guild].words[args[0]];
 			if (word.includes(args[1])) {
-				for(var i = 0; i < word.length; i++){ 
+				for(let i = 0; i < word.length; i++){ 
 					if (word[i] == args[1]) { 
 						data.servers[guild].words[args[0]].splice(i, 1);
 						data.servers[guild].wordCount--;
@@ -54,7 +54,7 @@ module.exports = {
 			return;
 		}
 		
-		var json = JSON.stringify(data, null, "\t");
+		let json = JSON.stringify(data, null, "\t");
 		fs.writeFileSync("data.json", json);
 
 		sendMsg(chan, "La combinaison **" + args[0] + "** - **" + args[1] + "** a été enlevée");
@@ -63,7 +63,7 @@ module.exports = {
 
 function sendMsg(chan, msg) {
 	const Discord = require("discord.js");
-	var embed = new Discord.MessageEmbed()
+	let embed = new Discord.MessageEmbed()
 		.setColor("#AC8A4D")
 		.setDescription(msg);
 	chan.send(embed);

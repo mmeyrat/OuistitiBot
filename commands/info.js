@@ -11,9 +11,9 @@ module.exports = {
 		const client = new Discord.Client();
 		client.login(config.BOT_TOKEN);
 
-		var data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
+		let data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
 
-		var embed = new Discord.MessageEmbed()
+		let embed = new Discord.MessageEmbed()
 			.setColor("#AC8A4D")
 			.setTitle("Informations générales")
 			.setThumbnail((await client.users.fetch("725370669289963521")).displayAvatarURL())

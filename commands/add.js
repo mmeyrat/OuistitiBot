@@ -8,7 +8,7 @@ module.exports = {
 		const Discord = require("discord.js");
 		const fs = require("fs");
 
-		processedWord = args[0].normalize("NFD").replace(/[\u0300-\u036f]|[^\w\s]/g, "").toLowerCase();
+		let processedWord = args[0].normalize("NFD").replace(/[\u0300-\u036f]|[^\w\s]/g, "").toLowerCase();
 
 		if (processedWord == null || args[1] == null || args[2] != null
 			|| processedWord.length > 30 || args[1].length > 30 
@@ -20,7 +20,7 @@ module.exports = {
 			return;
 		}
 
-		var data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
+		let data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
 
 		if (data.servers[guild] == null) {
 			data.servers[guild] = {};
@@ -32,7 +32,7 @@ module.exports = {
 		}
 
 		if (data.servers[guild].wordCount >= 20) {
-			var embed = new Discord.MessageEmbed()
+			let embed = new Discord.MessageEmbed()
 				.setColor("#AC8A4D")
 				.setDescription("Nombre maximal de mots/suffixes atteint (maximum 20)");
 			chan.send(embed);
@@ -44,7 +44,7 @@ module.exports = {
 		}
 
 		if (processedWord in data.servers[guild].words && data.servers[guild].words[processedWord].includes(args[1])) {
-			var embed = new Discord.MessageEmbed()
+			let embed = new Discord.MessageEmbed()
 				.setColor("#AC8A4D")
 				.setDescription("Cette combinaison a déjà été ajoutée");
 			chan.send(embed);
@@ -53,7 +53,7 @@ module.exports = {
 
 		data.servers[guild].words[processedWord].push(args[1]);
 		data.servers[guild].wordCount++;
-		var json = JSON.stringify(data, null, "\t");
+		let json = JSON.stringify(data, null, "\t");
 		fs.writeFileSync("data.json", json);
 
 		var embed = new Discord.MessageEmbed()

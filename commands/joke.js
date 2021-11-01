@@ -9,11 +9,11 @@ module.exports = {
 		const Discord = require("discord.js");
 		const fetch = require("node-fetch");
 
-		var url = "random";
-		var types = ["global", "dev", "dark", "limit", "beauf", "blondes"];
+		let url = "random";
+		let types = ["global", "dev", "dark", "limit", "beauf", "blondes"];
 
 		if (args[0] != null && !types.includes(args[0]) || args[1] != null) {
-			var embed = new Discord.MessageEmbed()
+			let embed = new Discord.MessageEmbed()
 				.setColor("#AC8A4D")
 				.setDescription("Veuillez utiliser un type de blague existant (voir `o!aide`)");
 			chan.send(embed);
@@ -22,13 +22,13 @@ module.exports = {
 			url = "type/" + args[0] + "/random";
 		}
 
-		var json = await fetch("https://www.blagues-api.fr/api/" + url, {
+		let json = await fetch("https://www.blagues-api.fr/api/" + url, {
 			headers: {
 				"Authorization": "Bearer " + config.JOKE_TOKEN,
 			}
 		}).then(response => response.json());
 
-		var embed = new Discord.MessageEmbed()
+		let embed = new Discord.MessageEmbed()
 			.setColor("#AC8A4D")
 			.setDescription(json.joke + "\n*→ " + json.answer.trim() + "*")
 			.setFooter(json.type);
