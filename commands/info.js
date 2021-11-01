@@ -17,7 +17,7 @@ module.exports = {
 			.setColor("#AC8A4D")
 			.setTitle("Informations générales")
 			.setThumbnail((await client.users.fetch("725370669289963521")).displayAvatarURL())
-			.setDescription("Un bot simple qui répond à vos messages pour vous embêter.");
+			.setDescription("Un bot Discord simple qui répond à des messages précis pour mettre de l'ambiance dans vos serveurs.");
 		
 		if (data.servers[guild] != null) {
 			if (data.servers[guild].delay != null) {
@@ -28,9 +28,13 @@ module.exports = {
 			}
 		}
 
-		embed.addField("Page de présentation du bot :", "https://top.gg/bot/725370669289963521")
-			.addField("Rejoindre le serveur Discord OuistitiBot officiel :", "https://discord.gg/3DbtncXpjC")
-			.setFooter("Version 2.0");
+		let links = "• Inviter le bot : \nhttp://is.am/4m3p \n"
+			+ "• Page de présentation du bot : \nhttps://top.gg/bot/725370669289963521 \n"
+			+ "• Rejoindre le serveur Discord OuistitiBot officiel : \nhttps://discord.gg/3DbtncXpjC \n"
+			+ "• Voter pour le bot : \nhttps://top.gg/bot/725370669289963521/vote"
+
+		embed.addField("Liens utiles :", links)
+			.setFooter("Version 2.1");
 		chan.send(embed);
 	}
 }
