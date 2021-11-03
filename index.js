@@ -40,7 +40,7 @@ client.on("message", msg => {
 		let args = msg.content.slice(2).split(" ");
 		let command = args.shift().toLowerCase();
 		let subMsg = msg.toString().split(" ");
-		let processedMsg = subMsg[subMsg.length - 1].normalize("NFD").replace(/[\u0300-\u036f]|[^\w\s]/g, "").toLowerCase();
+		let processedMsg = subMsg[subMsg.length - 1].normalize("NFD").replace(/[\u0300-\u036f]|[\.\?\!\)]+$/g, "").toLowerCase();
 		
 		if (msg.toString().toLowerCase().startsWith("o!") && client.commands.has(command)) {
 			client.commands.get(command).execute(chan, guild, args);
@@ -73,7 +73,7 @@ client.on("message", msg => {
 				chan.send(wordArray[Math.floor(Math.random() * wordArray.length)]);
 			} else if (data.servers[guild] != null && data.servers[guild].words != null && processedMsg in data.servers[guild].words) {
 				chan.send(data.servers[guild].words[processedMsg][Math.floor(Math.random() * data.servers[guild].words[processedMsg].length)]);
-			} else if (data.servers[guild] != null && data.servers[guild].isNumberEnabled && !isNaN(processedMsg)) {
+			} else if (data.servers[guild] != null && data.servers[guild].isNumberEnabled && processedMsg != "" && !isNaN(processedMsg)) {
 				chan.send(Number(processedMsg) + 1);
 			}
 			

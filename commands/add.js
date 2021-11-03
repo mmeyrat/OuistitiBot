@@ -8,7 +8,7 @@ module.exports = {
 		const Discord = require("discord.js");
 		const fs = require("fs");
 
-		let processedWord = args[0].normalize("NFD").replace(/[\u0300-\u036f]|[^\w\s]/g, "").toLowerCase();
+		let processedWord = args[0].normalize("NFD").replace(/[\u0300-\u036f]|[\.\?\!\)]+$/g, "").toLowerCase();
 
 		if (processedWord == null || args[1] == null || args[2] != null
 			|| processedWord.length > 30 || args[1].length > 30 
