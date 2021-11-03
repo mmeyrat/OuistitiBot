@@ -26,11 +26,14 @@ module.exports = {
 			if (data.servers[guild].isDefaultDisabled) {
 				embed.addField("Mots par défaut :", " désactivés");
 			}
+			if (data.servers[guild].isNumberEnabled) {
+				embed.addField("Réponses aux nombres :", " activées");
+			}
 		}
 
 		let links = "• Inviter le bot : \nhttp://is.am/4m3p \n"
 			+ "• Page de présentation du bot : \nhttps://top.gg/bot/725370669289963521 \n"
-			+ "• Rejoindre le serveur Discord OuistitiBot officiel : \nhttps://discord.gg/3DbtncXpjC \n"
+			+ "• Rejoindre le serveur Discord OuistitiBot : \nhttps://discord.gg/3DbtncXpjC \n"
 			+ "• Voter pour le bot : \nhttps://top.gg/bot/725370669289963521/vote"
 
 		embed.addField("Liens utiles :", links)
