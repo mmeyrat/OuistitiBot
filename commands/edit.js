@@ -1,20 +1,22 @@
 module.exports = {
-	name: "enlever",
-	title: "Enlever un mot/suffixe",
-	arguments: ["mot", "suffixe"],
-	description: "Enlève un mot précédemment ajouté de la liste des mots personnalisés.",
-	example: " voila ctee",
+	name: "modifier",
+	title: "Modifier un mot/suffixe",
+	arguments: ["ancien mot", "ancien suffixe", "nouveau mot", "nouveau suffixe"],
+	description: "Modifie un mot précédemment ajouté de la liste des mots personnalisés.",
+	example: " voila cto voila ctee",
 	execute(chan, guild, args) {
 		const fs = require("fs");
-
-		if (args[0] == null || args[1] == null || args[2] != null) {
+		
+		if (args[0] == null || args[1] == null || args[2] == null || args[3] == null || args[4] != null) {
 			sendMsg(chan, "Nombre d'arguments incorrect (voir `o!aide`)");
 			return;
 		}
 
 		let processedWord = args[0].normalize("NFD").replace(/[\u0300-\u036f]|[\.\?\!\)]+$/g, "").toLowerCase();
+		let processedNewWord = args[2].normalize("NFD").replace(/[\u0300-\u036f]|[\.\?\!\)]+$/g, "").toLowerCase();
 
-		if (processedWord == null || processedWord.length > 30 || args[1].length > 30 || processedWord.length == 0) {
+		if (processedWord == null || processedNewWord == null || processedWord.length > 30 || args[1].length > 30 
+			|| processedNewWord.length > 30 || args[3].length > 30 || processedWord.length == 0 || processedNewWord.length == 0) {
 			sendMsg(chan, "Mot ou suffixe incorrect (voir `o!aide`)");
 			return;
 		}
@@ -60,7 +62,7 @@ module.exports = {
 		let json = JSON.stringify(data, null, "\t");
 		fs.writeFileSync("data.json", json);
 
-		sendMsg(chan, `La combinaison **${args[0]}** - **${args[1]}** a été enlevée`);
+		sendMsg(chan, "La combinaison **" + args[0] + "** - **" + args[1] + "** a été enlevée");
 	}
 }
 

@@ -8,15 +8,15 @@ module.exports = {
 		const Discord = require("discord.js");
 		const fs = require("fs");
 
+		if (args[0] == null || args[1] == null || args[2] != null) {
+			sendMsg(chan, "Nombre d'arguments incorrect (voir `o!aide`)");
+			return;
+		}
+
 		let processedWord = args[0].normalize("NFD").replace(/[\u0300-\u036f]|[\.\?\!\)]+$/g, "").toLowerCase();
 
-		if (processedWord == null || args[1] == null || args[2] != null
-			|| processedWord.length > 30 || args[1].length > 30 
-			|| processedWord.length == 0 || args[1].length == 0) {
-			var embed = new Discord.MessageEmbed()
-				.setColor("#AC8A4D")
-				.setDescription("Mot ou suffixe incorrect (voir `o!aide`)");
-			chan.send(embed);
+		if (processedWord == null || processedWord.length > 30 || args[1].length > 30 || processedWord.length == 0) {
+			sendMsg(chan, "Mot ou suffixe incorrect (voir `o!aide`)");
 			return;
 		}
 
@@ -32,10 +32,7 @@ module.exports = {
 		}
 
 		if (data.servers[guild].wordCount >= 20) {
-			let embed = new Discord.MessageEmbed()
-				.setColor("#AC8A4D")
-				.setDescription("Nombre maximal de mots/suffixes atteint (maximum 20)");
-			chan.send(embed);
+			sendMsg(chan, "Nombre maximal de mots/suffixes atteint (maximum 20)");
 			return;
 		}
 
@@ -44,10 +41,7 @@ module.exports = {
 		}
 
 		if (processedWord in data.servers[guild].words && data.servers[guild].words[processedWord].includes(args[1])) {
-			let embed = new Discord.MessageEmbed()
-				.setColor("#AC8A4D")
-				.setDescription("Cette combinaison a déjà été ajoutée");
-			chan.send(embed);
+			sendMsg(chan, "Cette combinaison a déjà été ajoutée");
 			return;
 		}
 
@@ -56,9 +50,14 @@ module.exports = {
 		let json = JSON.stringify(data, null, "\t");
 		fs.writeFileSync("data.json", json);
 
-		var embed = new Discord.MessageEmbed()
-			.setColor("#AC8A4D")
-			.setDescription("La combinaison **" + processedWord + "** - **" + args[1] + "** a été ajoutée");
-		chan.send(embed);
+		sendMsg(chan, `La combinaison **${processedWord}** - **${args[1]}** a été ajoutée`);
 	}
+}
+
+function sendMsg(chan, msg) {
+	const Discord = require("discord.js");
+	let embed = new Discord.MessageEmbed()
+		.setColor("#AC8A4D")
+		.setDescription(msg);
+	chan.send(embed);
 }
