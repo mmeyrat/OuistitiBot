@@ -5,7 +5,6 @@ module.exports = {
 	description: "Ajoute un mot et un suffixe à la liste des mots personnalisés (30 caractères maximum pour chacun). Il est possible d'ajouter un maximum de 20 mots ou suffixes (un mot peut avoir plusieurs suffixes).",
 	example: " voila ctee",
 	execute(chan, guild, args) {
-		const Discord = require("discord.js");
 		const fs = require("fs");
 
 		if (args[0] == null || args[1] == null || args[2] != null) {
