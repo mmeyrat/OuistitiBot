@@ -7,11 +7,11 @@ module.exports = {
 	async execute(chan, guild, args) {
 		const fs = require("fs");
 		const config = require("../config");
-		const { Client, GatewayIntentBits, EmbedBuilder } = require('discord.js');
-		const client = new Client({ 'intents': [GatewayIntentBits.Guilds]});
+		const { Client, GatewayIntentBits, EmbedBuilder } = require("discord.js");
+		const client = new Client({ "intents": [GatewayIntentBits.Guilds]});
 		client.login(config.BOT_TOKEN);
 
-		let data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
+		let data = JSON.parse(fs.readFileSync("data.json", "utf8"));
 
 		let embed = new EmbedBuilder()
 			.setColor("#AC8A4D")

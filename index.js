@@ -1,17 +1,17 @@
 const fs = require("fs");
 const config = require("./config");
-const topgg = require('@top-gg/sdk');
+const topgg = require("@top-gg/sdk");
 const Discord = require("discord.js");
 
 const topggApi = new topgg.Api(config.TOPGG_TOKEN);
-const { Client, GatewayIntentBits, Partials, ActivityType } = require('discord.js');
+const { Client, GatewayIntentBits, Partials, ActivityType } = require("discord.js");
 const client = new Client({
-	'intents': [
+	"intents": [
 		GatewayIntentBits.Guilds,
 		GatewayIntentBits.GuildMessages,
 		GatewayIntentBits.MessageContent
 	],
-	'partials': [Partials.Channel]
+	"partials": [Partials.Channel]
 });
 const status = [[ActivityType.Playing, "finir les mots"], 
 				[ActivityType.Playing, "Donkey Kong"], 
@@ -58,7 +58,7 @@ client.on("messageCreate", msg => {
 			client.commands.get(command).execute(chan, guild, args);
 			
 		} else {
-			let data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
+			let data = JSON.parse(fs.readFileSync("data.json", "utf8"));
 			
 			if (data.servers[guild] != null && data.servers[guild].delay != null && data.servers[guild].lastMsg != null) { // check if there's delay
 				let lastMessageDate = new Date(data.servers[guild].lastMsg);

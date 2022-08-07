@@ -7,7 +7,7 @@ module.exports = {
 	async execute(chan, guild, args) {
 		const config = require("../config");
 		const fetch = require("node-fetch");
-		const { EmbedBuilder } = require('discord.js');
+		const { EmbedBuilder } = require("discord.js");
 
 		let url = "random";
 		let types = ["global", "dev", "dark", "limit", "beauf", "blondes"];

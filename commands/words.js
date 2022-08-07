@@ -6,9 +6,9 @@ module.exports = {
 	example: "",
 	execute(chan, guild, args) {
 		const fs = require("fs");
-		const { EmbedBuilder } = require('discord.js');
+		const { EmbedBuilder } = require("discord.js");
 
-		let data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
+		let data = JSON.parse(fs.readFileSync("data.json", "utf8"));
 
 		let defaultField = [];
 		let customField = [];
@@ -32,10 +32,10 @@ module.exports = {
 		let embed = new EmbedBuilder()
 			.setColor("#AC8A4D")
 			.setTitle("Liste des mots/suffixes")
-			.addFields({ name: `Mots par défaut (${defaultCount} suffixes)`, value: defaultField.join('\n'), inline: true });
+			.addFields({ name: `Mots par défaut (${defaultCount} suffixes)`, value: defaultField.join("\n"), inline: true });
 
 		if (customField.length > 0) {
-			embed.addFields({ name: `Mots personnalisés (${data.servers[guild].wordCount} suffixes)`, value: customField.join('\n'), inline: true });
+			embed.addFields({ name: `Mots personnalisés (${data.servers[guild].wordCount} suffixes)`, value: customField.join("\n"), inline: true });
 		}   
 
 		chan.send({ embeds: [embed] });

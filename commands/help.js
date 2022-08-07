@@ -5,8 +5,8 @@ module.exports = {
 	description: "Affiche l'aide.",
 	example: "",
 	async execute(chan, guild, args) {
-		const fs = require('fs');
-		const { EmbedBuilder } = require('discord.js');
+		const fs = require("fs");
+		const { EmbedBuilder } = require("discord.js");
 
 		let embed = new EmbedBuilder()
 			.setColor("#AC8A4D")

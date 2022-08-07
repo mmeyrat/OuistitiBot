@@ -6,9 +6,9 @@ module.exports = {
 	example: "",
 	execute(chan, guild, args) {
 		const fs = require("fs");
-		const { EmbedBuilder } = require('discord.js');
+		const { EmbedBuilder } = require("discord.js");
 
-		let data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
+		let data = JSON.parse(fs.readFileSync("data.json", "utf8"));
 
 		if (data.servers[guild] == null) {
 			data.servers[guild] = {};

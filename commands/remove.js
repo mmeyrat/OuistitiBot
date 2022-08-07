@@ -19,7 +19,7 @@ module.exports = {
 			return;
 		}
 
-		let data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
+		let data = JSON.parse(fs.readFileSync("data.json", "utf8"));
 
 		if (data.servers[guild] == null) {
 			data.servers[guild] = {};
@@ -65,7 +65,7 @@ module.exports = {
 }
 
 function sendMsg(chan, msg) {
-	const { EmbedBuilder } = require('discord.js');
+	const { EmbedBuilder } = require("discord.js");
 	let embed = new EmbedBuilder()
 		.setColor("#AC8A4D")
 		.setDescription(msg);
