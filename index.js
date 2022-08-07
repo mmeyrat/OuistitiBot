@@ -1,9 +1,21 @@
-const Discord = require("discord.js");
 const fs = require("fs");
 const config = require("./config");
 const topgg = require('@top-gg/sdk');
-const client = new Discord.Client();
 const topggApi = new topgg.Api(config.TOPGG_TOKEN);
+const Discord = require("discord.js");/*
+Client = Discord.Client;
+GatewayIntentBits = Discord.Intents;
+const client = new Client({intents: [GatewayIntentBits.Guilds]});
+*/
+const { Client, GatewayIntentBits, Partials } = require('discord.js');
+const client = new Client({
+	'intents': [
+	  GatewayIntentBits.Guilds,
+	  GatewayIntentBits.GuildMessages,
+	  GatewayIntentBits.MessageContent
+	],
+	'partials': [Partials.Channel]
+  });
 
 let commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
 client.commands = new Discord.Collection();
@@ -22,18 +34,20 @@ client.on("ready", () => {
 		if(isHelp) { 
 			client.user.setActivity("o!aide", { type: "WATCHING" });
 			isHelp = false;
+			console.log("ok")
 		} else {
 			let id = Math.floor(Math.random() * (status.length - 1) + 1);
 			client.user.setActivity(status[id][1], { type: status[id][0] });
 			isHelp = true;
-		}
+			console.log("ko")
+		}/*
 		topggApi.postStats({
 			serverCount: client.guilds.cache.size
-		})
-	}, 60000 * 30);
+		})*/
+	}, 6000 * 1);
 });
 
-client.on("message", msg => {
+client.on("messageCreate", msg => {
 	if (!msg.author.bot && (msg.channel.type !== "dm")) {
 		let chan = client.channels.cache.get(msg.channel.id);
 		let guild = msg.guild.id;
@@ -86,4 +100,4 @@ client.on("message", msg => {
 	}
 });
 
-client.login(config.BOT_TOKEN);
+client.login(config.BOT_TOKEN)
