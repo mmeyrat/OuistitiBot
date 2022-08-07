@@ -86,7 +86,7 @@ client.on("messageCreate", msg => {
 			} else if (data.servers[guild] != null && data.servers[guild].words != null && processedMsg in data.servers[guild].words) {
 				chan.send(data.servers[guild].words[processedMsg][Math.floor(Math.random() * data.servers[guild].words[processedMsg].length)]);
 			} else if (data.servers[guild] != null && data.servers[guild].isNumberEnabled && processedMsg != "" && !isNaN(processedMsg)) {
-				chan.send(Number(processedMsg) + 1);
+				chan.send(String(Number(processedMsg) + 1));
 			}
 			
 			if (data.servers[guild] != null && data.servers[guild].delay != null) {

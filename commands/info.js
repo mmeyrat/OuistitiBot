@@ -5,15 +5,15 @@ module.exports = {
 	description: "Affiche les informations générales relatives au bot.",
 	example: "",
 	async execute(chan, guild, args) {
-		const Discord = require("discord.js");
 		const fs = require("fs");
 		const config = require("../config");
-		const client = new Discord.Client();
+		const { Client, GatewayIntentBits, EmbedBuilder } = require('discord.js');
+		const client = new Client({ 'intents': [GatewayIntentBits.Guilds]});
 		client.login(config.BOT_TOKEN);
 
 		let data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
 
-		let embed = new Discord.MessageEmbed()
+		let embed = new EmbedBuilder()
 			.setColor("#AC8A4D")
 			.setTitle("Informations générales")
 			.setThumbnail((await client.users.fetch("725370669289963521")).displayAvatarURL())
@@ -21,13 +21,13 @@ module.exports = {
 		
 		if (data.servers[guild] != null) {
 			if (data.servers[guild].delay != null) {
-				embed.addField("Délai actuel :", data.servers[guild].delay + " minutes");
+				embed.addFields({ name: "Délai actuel :", value: data.servers[guild].delay + " minutes"});
 			}
 			if (data.servers[guild].isDefaultDisabled) {
-				embed.addField("Mots par défaut :", " désactivés");
+				embed.addFields({ name: "Mots par défaut :", value: " désactivés"});
 			}
 			if (data.servers[guild].isNumberEnabled) {
-				embed.addField("Réponses aux nombres :", " activées");
+				embed.addFields({ name: "Réponses aux nombres :", value: " activées"});
 			}
 		}
 
@@ -36,8 +36,8 @@ module.exports = {
 			+ "• Rejoindre le serveur Discord OuistitiBot : \nhttps://discord.gg/3DbtncXpjC \n"
 			+ "• Voter pour le bot : \nhttps://top.gg/bot/725370669289963521/vote"
 
-		embed.addField("Liens utiles :", links)
-			.setFooter("Version 2.1");
-		chan.send(embed);
+		embed.addFields({ name: "Liens utiles :", value: links })
+			.setFooter({ text: "Version 2.1" });
+		chan.send({ embeds: [embed] });
 	}
 }
