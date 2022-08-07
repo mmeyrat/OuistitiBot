@@ -6,17 +6,17 @@ module.exports = {
 	example: " global",
 	async execute(chan, guild, args) {
 		const config = require("../config");
-		const Discord = require("discord.js");
 		const fetch = require("node-fetch");
+		const { EmbedBuilder } = require('discord.js');
 
 		let url = "random";
 		let types = ["global", "dev", "dark", "limit", "beauf", "blondes"];
 
 		if (args[0] != null && !types.includes(args[0]) || args[1] != null) {
-			let embed = new Discord.MessageEmbed()
+			let embed = new EmbedBuilder()
 				.setColor("#AC8A4D")
 				.setDescription("Veuillez utiliser un type de blague existant (voir `o!aide`)");
-			chan.send(embed);
+			chan.send({ embeds: [embed] });
 			return;
 		} else if (types.includes(args[0])) {
 			url = "type/" + args[0] + "/random";
@@ -28,10 +28,10 @@ module.exports = {
 			}
 		}).then(response => response.json());
 
-		let embed = new Discord.MessageEmbed()
+		let embed = new EmbedBuilder()
 			.setColor("#AC8A4D")
 			.setDescription(json.joke + "\n*→ " + json.answer.trim() + "*")
-			.setFooter(json.type);
-		chan.send(embed);
+			.setFooter({ text: json.type });
+		chan.send({ embeds: [embed] });
 	}
 }

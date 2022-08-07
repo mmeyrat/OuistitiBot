@@ -5,8 +5,8 @@ module.exports = {
 	description: "Active ou désactive les mots/suffixes par défaut.",
 	example: "",
 	execute(chan, guild, args) {
-		const Discord = require("discord.js");
 		const fs = require("fs");
+		const { EmbedBuilder } = require('discord.js');
 
 		let data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
 
@@ -26,9 +26,9 @@ module.exports = {
 		let json = JSON.stringify(data, null, "\t");
 		fs.writeFileSync("data.json", json);
 
-		let embed = new Discord.MessageEmbed()
+		let embed = new EmbedBuilder()
 			.setColor("#AC8A4D")
 			.setDescription(msg);
-		chan.send(embed);
+		chan.send({ embeds: [embed] });
 	}
 }
