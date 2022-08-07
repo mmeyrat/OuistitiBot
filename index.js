@@ -7,7 +7,7 @@ Client = Discord.Client;
 GatewayIntentBits = Discord.Intents;
 const client = new Client({intents: [GatewayIntentBits.Guilds]});
 */
-const { Client, GatewayIntentBits, Partials } = require('discord.js');
+const { Client, GatewayIntentBits, Partials, ActivityType } = require('discord.js');
 const client = new Client({
 	'intents': [
 	  GatewayIntentBits.Guilds,
@@ -20,7 +20,11 @@ const client = new Client({
 let commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
 client.commands = new Discord.Collection();
 
-const status = [["PLAYING", "finir les mots"], ["PLAYING", "Donkey Kong"], ["WATCHING", "une banane"], ["LISTENING", "les gens se plaindre"], ["LISTENING", "- ille"]];
+const status = [[ActivityType.Playing, "finir les mots"], 
+				[ActivityType.Playing, "Donkey Kong"], 
+				[ActivityType.Watching, "une banane"], 
+				[ActivityType.Listening, "les gens se plaindre"], 
+				[ActivityType.Listening, "- ille"]];
 
 for (let file of commandFiles) {
 	let command = require("./commands/" + file);
@@ -32,19 +36,17 @@ client.on("ready", () => {
 	let isHelp = true;
 	setInterval(() => {
 		if(isHelp) { 
-			client.user.setActivity("o!aide", { type: "WATCHING" });
+			client.user.setPresence({ activities: [{ name: "o!aide", type: ActivityType.Watching }] });
 			isHelp = false;
-			console.log("ok")
 		} else {
 			let id = Math.floor(Math.random() * (status.length - 1) + 1);
-			client.user.setActivity(status[id][1], { type: status[id][0] });
+			client.user.setPresence({ activities: [{ name: status[id][1], type: status[id][0] }] });
 			isHelp = true;
-			console.log("ko")
-		}/*
+		}
 		topggApi.postStats({
 			serverCount: client.guilds.cache.size
-		})*/
-	}, 6000 * 1);
+		})
+	}, 60000 * 30);
 });
 
 client.on("messageCreate", msg => {
