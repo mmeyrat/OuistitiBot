@@ -54,9 +54,9 @@ module.exports = {
 }
 
 function sendMsg(chan, msg) {
-	const Discord = require("discord.js");
-	let embed = new Discord.MessageEmbed()
+	const { EmbedBuilder } = require('discord.js');
+	let embed = new EmbedBuilder()
 		.setColor("#AC8A4D")
 		.setDescription(msg);
-	chan.send(embed);
+	chan.send({ embeds: [embed] });
 }
