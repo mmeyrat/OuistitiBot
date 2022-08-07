@@ -16,6 +16,7 @@ module.exports = {
 		let embed = new EmbedBuilder()
 			.setColor("#AC8A4D")
 			.setTitle("Informations générales")
+			.setAuthor({ name: "Crée par Aruten", iconURL: (await client.users.fetch("266707645803659274")).displayAvatarURL(), url: "https://discord.com/users/266707645803659274/" })
 			.setThumbnail((await client.users.fetch("725370669289963521")).displayAvatarURL())
 			.setDescription("Un bot Discord simple qui répond à des messages précis pour mettre de l'ambiance dans vos serveurs.");
 		
