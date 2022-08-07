@@ -5,8 +5,8 @@ module.exports = {
 	description: "Affiche la liste des mots pris en compte, ansi que leurs suffixes.",
 	example: "",
 	execute(chan, guild, args) {
-		const Discord = require("discord.js");
 		const fs = require("fs");
+		const { EmbedBuilder } = require('discord.js');
 
 		let data = JSON.parse(fs.readFileSync("data.json", 'utf8'));
 
@@ -29,15 +29,15 @@ module.exports = {
 			}
 		}
 		
-		let embed = new Discord.MessageEmbed()
+		let embed = new EmbedBuilder()
 			.setColor("#AC8A4D")
 			.setTitle("Liste des mots/suffixes")
-			.addField("Mots par défaut (" + defaultCount + " suffixes)", defaultField.join('\n'), true);
+			.addFields({ name: `Mots par défaut (${defaultCount} suffixes)`, value: defaultField.join('\n'), inline: true });
 
 		if (customField.length > 0) {
-			embed.addField("Mots personnalisés (" + data.servers[guild].wordCount + " suffixes)", customField.join('\n'), true);
+			embed.addFields({ name: `Mots personnalisés (${data.servers[guild].wordCount} suffixes)`, value: customField.join('\n'), inline: true });
 		}   
 
-		chan.send(embed);
+		chan.send({ embeds: [embed] });
 	}
 }

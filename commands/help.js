@@ -5,10 +5,10 @@ module.exports = {
 	description: "Affiche l'aide.",
 	example: "",
 	async execute(chan, guild, args) {
-		const Discord = require("discord.js");
 		const fs = require('fs');
+		const { EmbedBuilder } = require('discord.js');
 
-		let embed = new Discord.MessageEmbed()
+		let embed = new EmbedBuilder()
 			.setColor("#AC8A4D")
 			.setTitle("Liste des commandes");
 		let commandList = [];
@@ -27,9 +27,9 @@ module.exports = {
 					nameAndArgs += ` <${command.arguments[i]}>`;
 				}
 			}
-			embed.addField(`• ${command.title}`, `${nameAndArgs}\` : ${command.description}\n(Exemple : \`o!${command.name}${command.example}\`)`);
+			embed.addFields({ name: `• ${command.title}`, value: `${nameAndArgs}\` : ${command.description}\n(Exemple : \`o!${command.name}${command.example}\`)`});
 		});
 
-		chan.send(embed);
+		chan.send({ embeds: [embed] });
 	}
 }

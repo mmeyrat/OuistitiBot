@@ -1,30 +1,26 @@
 const fs = require("fs");
 const config = require("./config");
 const topgg = require('@top-gg/sdk');
+const Discord = require("discord.js");
+
 const topggApi = new topgg.Api(config.TOPGG_TOKEN);
-const Discord = require("discord.js");/*
-Client = Discord.Client;
-GatewayIntentBits = Discord.Intents;
-const client = new Client({intents: [GatewayIntentBits.Guilds]});
-*/
 const { Client, GatewayIntentBits, Partials, ActivityType } = require('discord.js');
 const client = new Client({
 	'intents': [
-	  GatewayIntentBits.Guilds,
-	  GatewayIntentBits.GuildMessages,
-	  GatewayIntentBits.MessageContent
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.MessageContent
 	],
 	'partials': [Partials.Channel]
-  });
-
-let commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
-client.commands = new Discord.Collection();
-
+});
 const status = [[ActivityType.Playing, "finir les mots"], 
 				[ActivityType.Playing, "Donkey Kong"], 
 				[ActivityType.Watching, "une banane"], 
 				[ActivityType.Listening, "les gens se plaindre"], 
 				[ActivityType.Listening, "- ille"]];
+
+let commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
+client.commands = new Discord.Collection();
 
 for (let file of commandFiles) {
 	let command = require("./commands/" + file);
