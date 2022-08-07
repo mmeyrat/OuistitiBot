@@ -19,18 +19,18 @@ module.exports = {
 			chan.send({ embeds: [embed] });
 			return;
 		} else if (types.includes(args[0])) {
-			url = "type/" + args[0] + "/random";
+			url = `type/${args[0]}/random`;
 		}
 
-		let json = await fetch("https://www.blagues-api.fr/api/" + url, {
+		let json = await fetch(`https://www.blagues-api.fr/api/${url}`, {
 			headers: {
-				"Authorization": "Bearer " + config.JOKE_TOKEN,
+				"Authorization": `Bearer ${config.JOKE_TOKEN}`,
 			}
 		}).then(response => response.json());
 
 		let embed = new EmbedBuilder()
 			.setColor("#AC8A4D")
-			.setDescription(json.joke + "\n*→ " + json.answer.trim() + "*")
+			.setDescription(`${json.joke}\n*→ ${json.answer.trim()}*`)
 			.setFooter({ text: json.type });
 		chan.send({ embeds: [embed] });
 	}

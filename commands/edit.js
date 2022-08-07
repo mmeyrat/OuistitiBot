@@ -60,7 +60,7 @@ module.exports = {
 		let json = JSON.stringify(data, null, "\t");
 		fs.writeFileSync("data.json", json);
 
-		sendMsg(chan, "La combinaison **" + args[0] + "** - **" + args[1] + "** a été enlevée");
+		sendMsg(chan, `La combinaison **${args[0]}** - **${args[1]}** a été enlevée`);
 	}
 }
 

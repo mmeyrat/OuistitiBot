@@ -33,7 +33,7 @@ module.exports = {
 
 		let embed = new EmbedBuilder()
 			.setColor("#AC8A4D")
-			.setDescription("Il y a maintenant **" + Number(args[0]) + "** minutes d'attente entre chaque message");
+			.setDescription(`Il y a maintenant **${Number(args[0])}** minutes d'attente entre chaque message`);
 		chan.send({ embeds: [embed] });
 	}
 }

@@ -16,7 +16,7 @@ module.exports = {
 		let i = 0;
 
 		for (let word in data.words) {
-			defaultField[i] = word + " - " + data.words[word];
+			defaultField[i] = `${word} - ${data.words[word]}`;
 			defaultCount += data.words[word].length;
 			i++;
 		}
@@ -24,7 +24,7 @@ module.exports = {
 		if (data.servers[guild] && data.servers[guild].words != null) {
 			i = 0;
 			for (let word in data.servers[guild].words) {
-				customField[i] = word + " - " + data.servers[guild].words[word];
+				customField[i] = `${word} - ${data.servers[guild].words[word]}`;
 				i++;
 			}
 		}

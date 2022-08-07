@@ -21,13 +21,13 @@ module.exports = {
 		
 		if (data.servers[guild] != null) {
 			if (data.servers[guild].delay != null) {
-				embed.addFields({ name: "Délai actuel :", value: data.servers[guild].delay + " minutes"});
+				embed.addFields({ name: "Délai actuel :", value: `data.servers[guild].delay minutes` });
 			}
 			if (data.servers[guild].isDefaultDisabled) {
-				embed.addFields({ name: "Mots par défaut :", value: " désactivés"});
+				embed.addFields({ name: "Mots par défaut :", value: " désactivés" });
 			}
 			if (data.servers[guild].isNumberEnabled) {
-				embed.addFields({ name: "Réponses aux nombres :", value: " activées"});
+				embed.addFields({ name: "Réponses aux nombres :", value: " activées" });
 			}
 		}
 
