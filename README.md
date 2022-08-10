@@ -20,10 +20,10 @@ Plusieurs commandes sont disponibles afin gérer ce trublion.
 
 ## Liens utiles
 
-[Lien du serveur officiel](https://discord.gg/3DbtncXpjC)
+[Inviter le bot](https://discord.com/api/oauth2/authorize?client_id=1007028483505012807&permissions=534723951680&scope=bot)
 
-[Lien d'invitation du bot](https://discord.com/api/oauth2/authorize?client_id=725370669289963521&permissions=0&redirect_uri=https%3A%2F%2Fdiscord.com%2Fapi%2Foauth2%2Fauthorize%3Fclient_id%3D725370669289963521%26permissions%3D0%26redirect_uri%3Dhttps%253A%252F%252Fdiscord.com%252Fapi%252Foauth2%252Fauthorize%253Fclient_id%253D725370&scope=bot)
+[Rejoindre le serveur Discord](https://discord.gg/3DbtncXpjC)
 
-[Page de présentation du bot](https://top.gg/bot/725370669289963521)
+[Page Top.gg](https://top.gg/bot/725370669289963521)
 
-[Lien de l'API de blagues (utilisée pour la commande ```o!blague```)](https://www.blagues-api.fr/)
+[API de blagues (utilisée pour la commande `o!blague`)](https://www.blagues-api.fr/)

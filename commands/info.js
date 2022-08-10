@@ -32,7 +32,7 @@ module.exports = {
 			}
 		}
 
-		let links = "• [Inviter le bot](http://is.am/4m3p) \n"
+		let links = "• [Inviter le bot](https://discord.com/api/oauth2/authorize?client_id=1007028483505012807&permissions=534723951680&scope=bot) \n"
 			+ "• [Le serveur Discord OuistitiBot](https://discord.gg/3DbtncXpjC) \n"
 			+ "• [Voter pour le bot](https://top.gg/bot/725370669289963521/vote) \n"			
 			+ "• [La page Github](https://github.com/mmeyrat/OuistitiBot) \n"
