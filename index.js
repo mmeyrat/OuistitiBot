@@ -39,9 +39,25 @@ client.on("ready", () => {
 			client.user.setPresence({ activities: [{ name: status[id][1], type: status[id][0] }] });
 			isHelp = true;
 		}
+		
 		topggApi.postStats({
 			serverCount: client.guilds.cache.size
 		})
+		
+		let data = JSON.parse(fs.readFileSync("data.json", "utf8"));
+		const guildsIds = client.guilds.cache.map(guild => guild.id);
+		
+		for (let i = 0; i < guildsIds.length; i++) {
+			if (data.servers[guildsIds[i]] != null && data.servers[guildsIds[i]].lastMsg != null) {
+				let lastMessageDate = new Date(data.servers[guildsIds[i]].lastMsg);
+				lastMessageDate.setMonth(lastMessageDate.getMonth() + 6);
+				let currentDate = new Date(Date.now());
+				
+				if (currentDate >= lastMessageDate) {
+					client.guilds.cache.get(guildsIds[i]).leave();
+				}
+			}
+		}
 	}, 60000 * 30);
 });
 
@@ -64,6 +80,7 @@ client.on("messageCreate", msg => {
 				let lastMessageDate = new Date(data.servers[guild].lastMsg);
 				lastMessageDate.setMinutes(lastMessageDate.getMinutes() + data.servers[guild].delay);
 				let currentDate = new Date(Date.now());
+				
 				if (currentDate <= lastMessageDate) {
 					return;
 				}
@@ -71,6 +88,7 @@ client.on("messageCreate", msg => {
 			
 			if (processedMsg in data.words) { // check if msg is a default word
 				let wordArray = data.words[processedMsg];
+				
 				if (data.servers[guild] != null) {
 					if (data.servers[guild].isDefaultDisabled != null) {
 						if (data.servers[guild].words != null && processedMsg in data.servers[guild].words) {
@@ -78,15 +96,17 @@ client.on("messageCreate", msg => {
 						}
 						return;
 					}
+					
 					if (data.servers[guild].words != null && processedMsg in data.servers[guild].words) {
 						wordArray = data.words[processedMsg].concat(data.servers[guild].words[processedMsg]);				
 					}
 				}
+				
 				chan.send(wordArray[Math.floor(Math.random() * wordArray.length)]);
 			} else if (data.servers[guild] != null && data.servers[guild].words != null && processedMsg in data.servers[guild].words) {
 				chan.send(data.servers[guild].words[processedMsg][Math.floor(Math.random() * data.servers[guild].words[processedMsg].length)]);
 			} else if (data.servers[guild] != null && data.servers[guild].isNumberEnabled && processedMsg != "" && !isNaN(processedMsg)) {
-				chan.send(String(Number(processedMsg) + 1));
+				msg.reply(String(Number(processedMsg) + 1));
 			}
 			
 			if (data.servers[guild] != null && data.servers[guild].delay != null) {
