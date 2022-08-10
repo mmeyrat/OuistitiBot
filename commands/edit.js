@@ -31,7 +31,7 @@ module.exports = {
 		}
 
 		if (data.servers[guild].wordCount <= 0) {
-			sendMsg(chan, "Aucun mot/suffixe à enlever");
+			sendMsg(chan, "Aucun mot/suffixe à modifier");
 			return;
 		}
 
@@ -40,17 +40,12 @@ module.exports = {
 			if (word.includes(args[1])) {
 				for(let i = 0; i < word.length; i++){ 
 					if (word[i] == args[1]) { 
-						data.servers[guild].words[args[0]].splice(i, 1);
-						data.servers[guild].wordCount--;
+						data.servers[guild].words[args[0]][i] = [args[2]];
 					}
 				}
 			} else {
 				sendMsg(chan, "Ce suffixe n'existe pas");
 				return;
-			}
-
-			if (data.servers[guild].words[args[0]].length == 0) {
-				delete data.servers[guild].words[args[0]];
 			}
 		} else {
 			sendMsg(chan, "Ce mot n'existe pas");
@@ -60,7 +55,7 @@ module.exports = {
 		let json = JSON.stringify(data, null, "\t");
 		fs.writeFileSync("data.json", json);
 
-		sendMsg(chan, `La combinaison **${args[0]}** - **${args[1]}** a été enlevée`);
+		sendMsg(chan, `La combinaison **${args[0]}** - **${args[1]}** a été remplacée par **${args[0]}** - **${args[2]}**`);
 	}
 }
 
