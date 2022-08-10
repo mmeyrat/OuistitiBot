@@ -63,7 +63,7 @@ client.on("ready", () => {
 
 client.on("messageCreate", msg => {
 	if (!msg.author.bot && (msg.channel.type !== "dm")) {
-		let chan = client.channels.cache.get(msg.channel.id);
+		let channel = client.channels.cache.get(msg.channel.id);
 		let guild = msg.guild.id;
 		let args = msg.content.slice(2).split(" ");
 		let command = args.shift().toLowerCase();
@@ -92,7 +92,7 @@ client.on("messageCreate", msg => {
 				if (data.servers[guild] != null) {
 					if (data.servers[guild].isDefaultDisabled != null) {
 						if (data.servers[guild].words != null && processedMsg in data.servers[guild].words) {
-							chan.send(data.servers[guild].words[processedMsg][Math.floor(Math.random() * data.servers[guild].words[processedMsg].length)]);
+							channel.send(data.servers[guild].words[processedMsg][Math.floor(Math.random() * data.servers[guild].words[processedMsg].length)]);
 						}
 						return;
 					}
@@ -102,11 +102,11 @@ client.on("messageCreate", msg => {
 					}
 				}
 				
-				chan.send(wordArray[Math.floor(Math.random() * wordArray.length)]);
+				channel.send(wordArray[Math.floor(Math.random() * wordArray.length)]);
 			} else if (data.servers[guild] != null && data.servers[guild].words != null && processedMsg in data.servers[guild].words) {
-				chan.send(data.servers[guild].words[processedMsg][Math.floor(Math.random() * data.servers[guild].words[processedMsg].length)]);
+				channel.send(data.servers[guild].words[processedMsg][Math.floor(Math.random() * data.servers[guild].words[processedMsg].length)]);
 			} else if (data.servers[guild] != null && data.servers[guild].isNumberEnabled && processedMsg != "" && !isNaN(processedMsg)) {
-				chan.send(String(Number(processedMsg) + 1));
+				channel.send(String(Number(processedMsg) + 1));
 			}
 			
 			if (data.servers[guild] != null && data.servers[guild].delay != null) {

@@ -32,10 +32,11 @@ module.exports = {
 			}
 		}
 
-		let links = "• Inviter le bot : \nhttp://is.am/4m3p \n"
-			+ "• Page de présentation du bot : \nhttps://top.gg/bot/725370669289963521 \n"
-			+ "• Rejoindre le serveur Discord OuistitiBot : \nhttps://discord.gg/3DbtncXpjC \n"
-			+ "• Voter pour le bot : \nhttps://top.gg/bot/725370669289963521/vote"
+		let links = "• [Inviter le bot](http://is.am/4m3p) \n"
+			+ "• [Le serveur Discord OuistitiBot](https://discord.gg/3DbtncXpjC) \n"
+			+ "• [Voter pour le bot](https://top.gg/bot/725370669289963521/vote) \n"			
+			+ "• [La page Github](https://github.com/mmeyrat/OuistitiBot) \n"
+			+ "• [L'API de blagues](https://www.blagues-api.fr/)"
 
 		embed.addFields({ name: "Liens utiles :", value: links })
 			.setFooter({ text: "Version 2.1" });
