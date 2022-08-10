@@ -32,10 +32,10 @@ module.exports = {
 		let embed = new EmbedBuilder()
 			.setColor("#AC8A4D")
 			.setTitle("Liste des mots/suffixes")
-			.addFields({ name: `Mots par défaut (${defaultCount} suffixes)`, value: defaultField.join("\n"), inline: true });
+			.addFields({ name: `Mots par défaut (${defaultCount})`, value: defaultField.join("\n"), inline: true });
 
 		if (customField.length > 0) {
-			embed.addFields({ name: `Mots personnalisés (${data.servers[guild].wordCount} suffixes)`, value: customField.join("\n"), inline: true });
+			embed.addFields({ name: `Mots personnalisés (${data.servers[guild].wordCount}/30)`, value: customField.join("\n"), inline: true });
 		}   
 
 		msg.reply({

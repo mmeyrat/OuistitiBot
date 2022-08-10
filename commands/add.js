@@ -2,7 +2,7 @@ module.exports = {
 	name: "ajouter",
 	title: "Ajouter un mot/suffixe",
 	arguments: ["mot", "suffixe"],
-	description: "Ajoute un mot et un suffixe à la liste des mots personnalisés (30 caractères maximum pour chacun). Il est possible d'ajouter un maximum de 20 mots ou suffixes (un mot peut avoir plusieurs suffixes).",
+	description: "Ajoute un mot et un suffixe à la liste des mots personnalisés (40 caractères maximum pour chacun). Il est possible d'ajouter un maximum de 30 mots ou suffixes (un mot peut avoir plusieurs suffixes).",
 	example: " voila ctee",
 	execute(msg, guild, args) {
 		const fs = require("fs");
@@ -14,7 +14,7 @@ module.exports = {
 
 		let processedWord = args[0].normalize("NFD").replace(/[\u0300-\u036f]|[\.\?\!\)]+$/g, "").toLowerCase();
 
-		if (processedWord == null || processedWord.length > 30 || args[1].length > 30 || processedWord.length == 0) {
+		if (processedWord == null || processedWord.length > 40 || args[1].length > 40 || processedWord.length == 0) {
 			sendMsg(msg, "Mot ou suffixe incorrect (voir `o!aide`)");
 			return;
 		}
@@ -30,8 +30,8 @@ module.exports = {
 			data.servers[guild].wordCount = 0;
 		}
 
-		if (data.servers[guild].wordCount >= 20) {
-			sendMsg(msg, "Nombre maximal de mots/suffixes atteint (maximum 20)");
+		if (data.servers[guild].wordCount >= 30) {
+			sendMsg(msg, "Nombre maximal de mots/suffixes atteint (maximum 30)");
 			return;
 		}
 
