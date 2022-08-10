@@ -13,11 +13,12 @@ const client = new Client({
 	],
 	"partials": [Partials.Channel]
 });
-const status = [[ActivityType.Playing, "finir les mots"], 
-				[ActivityType.Playing, "Donkey Kong"], 
-				[ActivityType.Watching, "une banane"], 
-				[ActivityType.Listening, "les gens se plaindre"], 
-				[ActivityType.Listening, "- ille"]];
+const status = [[ActivityType.Playing, "finir les mots"],
+				[ActivityType.Playing, "Donkey Kong"],
+				[ActivityType.Watching, "une banane"],
+				[ActivityType.Watching, "La Planète des singes"],
+				[ActivityType.Listening, "les gens se plaindre"],
+				[ActivityType.Listening, "Arctic Monkeys"]];
 
 let commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
 client.commands = new Discord.Collection();
