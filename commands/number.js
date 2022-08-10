@@ -4,7 +4,7 @@ module.exports = {
 	arguments: [""],
 	description: "Active ou désactive les réponses aux nombres. Quand un nombre est envoyé, le bot envoie le nombre suivant.",
 	example: "",
-	execute(chan, guild, args) {
+	execute(msg, guild, args) {
 		const fs = require("fs");
 		const { EmbedBuilder } = require("discord.js");
 
@@ -14,13 +14,13 @@ module.exports = {
 			data.servers[guild] = {};
 		}
 
-		let msg;
+		let text;
 		if (data.servers[guild].isNumberEnabled == null) {
 			data.servers[guild].isNumberEnabled = true;
-			msg = "Les réponses aux nombres sont activées";
+			text = "Les réponses aux nombres sont activées";
 		} else {
 			delete data.servers[guild].isNumberEnabled;
-			msg = "Les réponses aux nombres sont désactivées";
+			text = "Les réponses aux nombres sont désactivées";
 		}
 
 		let json = JSON.stringify(data, null, "\t");
@@ -28,7 +28,11 @@ module.exports = {
 
 		let embed = new EmbedBuilder()
 			.setColor("#AC8A4D")
-			.setDescription(msg);
-		chan.send({ embeds: [embed] });
+			.setDescription(text);
+		
+		msg.reply({
+			embeds: [embed],
+			allowedMentions: { repliedUser: false }
+		});
 	}
 }

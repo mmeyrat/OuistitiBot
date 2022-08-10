@@ -4,18 +4,18 @@ module.exports = {
 	arguments: ["mot", "suffixe"],
 	description: "Enlève un mot précédemment ajouté de la liste des mots personnalisés.",
 	example: " voila ctee",
-	execute(chan, guild, args) {
+	execute(msg, guild, args) {
 		const fs = require("fs");
 
 		if (args[0] == null || args[1] == null || args[2] != null) {
-			sendMsg(chan, "Nombre d'arguments incorrect (voir `o!aide`)");
+			sendMsg(msg, "Nombre d'arguments incorrect (voir `o!aide`)");
 			return;
 		}
 
 		let processedWord = args[0].normalize("NFD").replace(/[\u0300-\u036f]|[\.\?\!\)]+$/g, "").toLowerCase();
 
 		if (processedWord == null || processedWord.length > 30 || args[1].length > 30 || processedWord.length == 0) {
-			sendMsg(chan, "Mot ou suffixe incorrect (voir `o!aide`)");
+			sendMsg(msg, "Mot ou suffixe incorrect (voir `o!aide`)");
 			return;
 		}
 
@@ -31,7 +31,7 @@ module.exports = {
 		}
 
 		if (data.servers[guild].wordCount <= 0) {
-			sendMsg(chan, "Aucun mot/suffixe à enlever");
+			sendMsg(msg, "Aucun mot/suffixe à enlever");
 			return;
 		}
 
@@ -45,7 +45,7 @@ module.exports = {
 					}
 				}
 			} else {
-				sendMsg(chan, "Ce suffixe n'existe pas");
+				sendMsg(msg, "Ce suffixe n'existe pas");
 				return;
 			}
 
@@ -53,21 +53,25 @@ module.exports = {
 				delete data.servers[guild].words[args[0]];
 			}
 		} else {
-			sendMsg(chan, "Ce mot n'existe pas");
+			sendMsg(msg, "Ce mot n'existe pas");
 			return;
 		}
 		
 		let json = JSON.stringify(data, null, "\t");
 		fs.writeFileSync("data.json", json);
 
-		sendMsg(chan, `La combinaison **${args[0]}** - **${args[1]}** a été enlevée`);
+		sendMsg(msg, `La combinaison **${args[0]}** - **${args[1]}** a été enlevée`);
 	}
 }
 
-function sendMsg(chan, msg) {
+function sendMsg(msg, text) {
 	const { EmbedBuilder } = require("discord.js");
 	let embed = new EmbedBuilder()
 		.setColor("#AC8A4D")
-		.setDescription(msg);
-	chan.send({ embeds: [embed] });
+		.setDescription(text);
+	
+	msg.reply({
+		embeds: [embed],
+		allowedMentions: { repliedUser: false }
+	});
 }

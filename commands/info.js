@@ -4,7 +4,7 @@ module.exports = {
 	arguments: [""],
 	description: "Affiche les informations générales relatives au bot.",
 	example: "",
-	async execute(chan, guild, args) {
+	async execute(msg, guild, args) {
 		const fs = require("fs");
 		const config = require("../config");
 		const { Client, GatewayIntentBits, EmbedBuilder } = require("discord.js");
@@ -39,6 +39,10 @@ module.exports = {
 
 		embed.addFields({ name: "Liens utiles :", value: links })
 			.setFooter({ text: "Version 2.1" });
-		chan.send({ embeds: [embed] });
+
+		msg.reply({
+			embeds: [embed],
+			allowedMentions: { repliedUser: false }
+		});
 	}
 }

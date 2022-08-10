@@ -4,7 +4,7 @@ module.exports = {
 	arguments: ["minutes"],
 	description: "Définit le délai en minutes entre chaque message. Le délai doit être un nombre compris entre 0 et 10 000 (inclus).",
 	example: " 60",
-	execute(chan, guild, args) {
+	execute(msg, guild, args) {
 		const fs = require("fs");
 		const { EmbedBuilder } = require("discord.js");
 
@@ -12,7 +12,7 @@ module.exports = {
 			let embed = new EmbedBuilder()
 				.setColor("#AC8A4D")
 				.setDescription("Veuillez préciser un délai correct en minutes (voir `o!aide`)");
-			chan.send({ embeds: [embed] });
+			msg.send({ embeds: [embed] });
 			return;
 		}
 
@@ -34,6 +34,10 @@ module.exports = {
 		let embed = new EmbedBuilder()
 			.setColor("#AC8A4D")
 			.setDescription(`Il y a maintenant **${Number(args[0])}** minutes d'attente entre chaque message`);
-		chan.send({ embeds: [embed] });
+		
+		msg.reply({
+			embeds: [embed],
+			allowedMentions: { repliedUser: false }
+		});
 	}
 }

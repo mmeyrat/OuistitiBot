@@ -4,7 +4,7 @@ module.exports = {
 	arguments: [""],
 	description: "Affiche l'aide.",
 	example: "",
-	async execute(chan, guild, args) {
+	async execute(msg, guild, args) {
 		const fs = require("fs");
 		const { EmbedBuilder } = require("discord.js");
 
@@ -30,6 +30,9 @@ module.exports = {
 			embed.addFields({ name: `• ${command.title}`, value: `${nameAndArgs}\` : ${command.description}\n(Exemple : \`o!${command.name}${command.example}\`)`});
 		});
 
-		chan.send({ embeds: [embed] });
+		msg.reply({
+			embeds: [embed],
+			allowedMentions: { repliedUser: false }
+		});
 	}
 }

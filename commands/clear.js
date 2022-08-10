@@ -4,7 +4,7 @@ module.exports = {
 	arguments: [""],
 	description: "Supprime toutes les données sauvegardées par le bot de ce serveur.",
 	example: "",
-	execute(chan, guild, args) {
+	execute(msg, guild, args) {
 		const fs = require("fs");
 		const { EmbedBuilder } = require("discord.js");
 
@@ -14,7 +14,11 @@ module.exports = {
 			let embed = new EmbedBuilder()
 				.setColor("#AC8A4D")
 				.setDescription("Aucune donnée à supprimer");
-			chan.send({ embeds: [embed] });
+			
+			msg.reply({
+				embeds: [embed],
+				allowedMentions: { repliedUser: false }
+			});			
 			return;
 		}
 
@@ -25,6 +29,10 @@ module.exports = {
 		let embed = new EmbedBuilder()
 			.setColor("#AC8A4D")
 			.setDescription("Toutes les données ont été supprimées avec succès");
-		chan.send({ embeds: [embed] });
+		
+		msg.reply({
+			embeds: [embed],
+			allowedMentions: { repliedUser: false }
+		});
 	}
 }

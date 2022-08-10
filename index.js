@@ -71,7 +71,7 @@ client.on("messageCreate", msg => {
 		let processedMsg = subMsg[subMsg.length - 1].normalize("NFD").replace(/[\u0300-\u036f]|[\.\?\!\)]+$/g, "").toLowerCase();
 		
 		if (msg.toString().toLowerCase().startsWith("o!") && client.commands.has(command)) {
-			client.commands.get(command).execute(chan, guild, args);
+			client.commands.get(command).execute(msg, guild, args);
 			
 		} else {
 			let data = JSON.parse(fs.readFileSync("data.json", "utf8"));
@@ -106,7 +106,7 @@ client.on("messageCreate", msg => {
 			} else if (data.servers[guild] != null && data.servers[guild].words != null && processedMsg in data.servers[guild].words) {
 				chan.send(data.servers[guild].words[processedMsg][Math.floor(Math.random() * data.servers[guild].words[processedMsg].length)]);
 			} else if (data.servers[guild] != null && data.servers[guild].isNumberEnabled && processedMsg != "" && !isNaN(processedMsg)) {
-				msg.reply(String(Number(processedMsg) + 1));
+				chan.send(String(Number(processedMsg) + 1));
 			}
 			
 			if (data.servers[guild] != null && data.servers[guild].delay != null) {

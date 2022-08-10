@@ -4,7 +4,7 @@ module.exports = {
 	arguments: [""],
 	description: "Active ou désactive les mots/suffixes par défaut.",
 	example: "",
-	execute(chan, guild, args) {
+	execute(msg, guild, args) {
 		const fs = require("fs");
 		const { EmbedBuilder } = require("discord.js");
 
@@ -14,13 +14,13 @@ module.exports = {
 			data.servers[guild] = {};
 		}
 
-		let msg;
+		let text;
 		if (data.servers[guild].isDefaultDisabled == null) {
 			data.servers[guild].isDefaultDisabled = true;
-			msg = "Les mots par défaut sont désactivés";
+			text = "Les mots par défaut sont désactivés";
 		} else {
 			delete data.servers[guild].isDefaultDisabled;
-			msg = "Les mots par défaut sont activés";
+			text = "Les mots par défaut sont activés";
 		}
 
 		let json = JSON.stringify(data, null, "\t");
@@ -28,7 +28,11 @@ module.exports = {
 
 		let embed = new EmbedBuilder()
 			.setColor("#AC8A4D")
-			.setDescription(msg);
-		chan.send({ embeds: [embed] });
+			.setDescription(text);
+		
+		msg.reply({
+			embeds: [embed],
+			allowedMentions: { repliedUser: false }
+		});
 	}
 }

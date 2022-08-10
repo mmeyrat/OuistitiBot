@@ -4,7 +4,7 @@ module.exports = {
 	arguments: [""],
 	description: "Affiche la liste des mots pris en compte, ansi que leurs suffixes.",
 	example: "",
-	execute(chan, guild, args) {
+	execute(msg, guild, args) {
 		const fs = require("fs");
 		const { EmbedBuilder } = require("discord.js");
 
@@ -38,6 +38,9 @@ module.exports = {
 			embed.addFields({ name: `Mots personnalisés (${data.servers[guild].wordCount} suffixes)`, value: customField.join("\n"), inline: true });
 		}   
 
-		chan.send({ embeds: [embed] });
+		msg.reply({
+			embeds: [embed],
+			allowedMentions: { repliedUser: false }
+		});
 	}
 }
