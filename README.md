@@ -1,8 +1,8 @@
 # OuistitiBot
 
-OuistitiBot est une application Discord ayant pour vocation d'envoyer des messages en réponse aux votres. Si vous aimez les blagues du type "quoi ? - feur" ce bot est fait pour vous.  
+OuistitiBot est une application Discord ayant pour vocation d'envoyer des messages en réponse aux vôtres. Si vous aimez les blagues du type "quoi ? - feur" ce bot est fait pour vous.  
   
-Lorsque la fin d'un de vos messages envoyé dans un salon est reconnue par le bot, il vous répondra de manière appropriée. Par défaut, le bot incorpore 10 mots, mais il est possible de rajouter jusqu'à 30 mots personnalisés par serveur. Également, d'autres commandes permettent de gérer ce trublion et personnifier cotre expérience.  
+Lorsque la fin d'un de vos messages envoyés dans un salon est reconnue par le bot, il vous répondra de manière appropriée. Par défaut, le bot incorpore 10 mots, mais il est possible de rajouter jusqu'à 30 mots personnalisés par serveur. Également, d'autres commandes permettent de gérer ce trublion et personnifier vôtre expérience.  
   
 [Inviter le bot à votre serveur](https://discord.com/api/oauth2/authorize?client_id=1007028483505012807&permissions=534723951680&scope=bot)
   
@@ -27,7 +27,7 @@ Lorsque la fin d'un de vos messages envoyé dans un salon est reconnue par le bo
 Ce bot est actuellement en ligne, mais il est possible de l'installer localement avec le guide suivant.  
 
 
-### Pré-requis
+### Prérequis
 
 Pour le bon fonctionnement de ce projet, il est indispensable d'avoir réalisé les étapes suivantes :
 
@@ -46,14 +46,14 @@ exports.TOPGG_TOKEN = "...";
 
 ### Installation
 
-Après avoir mis en place les pré-requis, il est nécessaire de suivre chacune de ces étapes :
+Après avoir mis en place les prérequis, il est nécessaire de suivre chacune de ces étapes :
 
 1. Cloner le projet,  
 ```git clone https://github.com/mmeyrat/OuistitiBot.git```
 2. Ajouter le fichier `config.js` à la racine du projet.
 3. Installer les dépendances,  
 ```npm install```
-4. Éxecuter le projet,  
+4. Exécuter le projet,  
 ```npm run start```
 
 
