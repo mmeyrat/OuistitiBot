@@ -3,7 +3,7 @@ module.exports = {
 	title: "Enlever un mot/suffixe",
 	arguments: ["mot", "suffixe"],
 	description: "Enlève un mot précédemment ajouté de la liste des mots personnalisés.",
-	example: " voila ctee",
+	example: " voila ctée",
 	execute(msg, guild, args) {
 		const fs = require("fs");
 

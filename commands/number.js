@@ -2,7 +2,7 @@ module.exports = {
 	name: "nombre",
 	title: "Activer/désactiver les nombres",
 	arguments: [""],
-	description: "Active ou désactive les réponses aux nombres. Quand un nombre est envoyé, le bot envoie le nombre suivant.",
+	description: "Active ou désactive les réponses aux nombres. Quand un nombre est envoyé, le bot envoie le nombre entier suivant (si c'est un nombre décimal, il sera arrondi). Les mots personnalisés sont prioritaires à cette commande.",
 	example: "",
 	execute(msg, guild, args) {
 		const fs = require("fs");

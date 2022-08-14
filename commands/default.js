@@ -2,7 +2,7 @@ module.exports = {
 	name: "defaut",
 	title: "Activer/désactiver les mots",
 	arguments: [""],
-	description: "Active ou désactive les mots/suffixes par défaut.",
+	description: "Active ou désactive tous les mots/suffixes par défaut.",
 	example: "",
 	execute(msg, guild, args) {
 		const fs = require("fs");

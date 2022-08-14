@@ -12,12 +12,13 @@ module.exports = {
 		client.login(config.BOT_TOKEN);
 
 		let data = JSON.parse(fs.readFileSync("data.json", "utf8"));
+		let author = (await client.users.fetch("266707645803659274"));
 
 		let embed = new EmbedBuilder()
 			.setColor("#AC8A4D")
 			.setTitle("Informations générales")
-			.setAuthor({ name: "Crée par Aruten", iconURL: (await client.users.fetch("266707645803659274")).displayAvatarURL(), url: "https://discord.com/users/266707645803659274/" })
-			.setThumbnail((await client.users.fetch("725370669289963521")).displayAvatarURL())
+			.setAuthor({ name: `Crée par ${author.username}`, iconURL: author.displayAvatarURL(), url: `https://discord.com/users/${author.id}` })
+			.setThumbnail((await client.users.fetch("1007028483505012807")).displayAvatarURL())
 			.setDescription("Un bot Discord simple qui répond à des messages précis pour mettre de l'ambiance dans vos serveurs.");
 		
 		if (data.servers[guild] != null) {
@@ -33,10 +34,10 @@ module.exports = {
 		}
 
 		let links = "• [Inviter le bot](https://discord.com/api/oauth2/authorize?client_id=1007028483505012807&permissions=534723951680&scope=bot) \n"
-			+ "• [Le serveur Discord OuistitiBot](https://discord.gg/3DbtncXpjC) \n"
 			+ "• [Voter pour le bot](https://top.gg/bot/725370669289963521/vote) \n"			
+			+ "• [Le serveur Discord OuistitiBot](https://discord.gg/3DbtncXpjC) \n"
 			+ "• [La page Github](https://github.com/mmeyrat/OuistitiBot) \n"
-			+ "• [L'API de blagues](https://www.blagues-api.fr/)"
+			+ "• [Le site Blagues API](https://www.blagues-api.fr/)"
 
 		embed.addFields({ name: "Liens utiles :", value: links })
 			.setFooter({ text: "Version 2.1" });

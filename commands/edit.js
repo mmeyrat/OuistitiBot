@@ -3,7 +3,7 @@ module.exports = {
 	title: "Modifier un mot/suffixe",
 	arguments: ["ancien mot", "ancien suffixe", "nouveau suffixe"],
 	description: "Modifie un mot précédemment ajouté de la liste des mots personnalisés.",
-	example: " voila cto ctee",
+	example: " voila ctai ctée",
 	execute(msg, guild, args) {
 		const fs = require("fs");
 		
