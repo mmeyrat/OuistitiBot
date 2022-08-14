@@ -1,0 +1,22 @@
+{
+  "name": "ouistitibot",
+  "version": "2.1.0",
+  "author": "Maxime Meyrat",
+  "description": "Un bot Discord simple qui répond à des messages précis pour mettre de l'ambiance dans vos serveurs.",
+  "license": "MIT",
+  "homepage": "https://github.com/mmeyrat/OuistitiBot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "@top-gg/sdk": "^3.1.3",
+    "discord.io": "^2.5.3",
+    "discord.js": "^14.1.2",
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
