@@ -14,13 +14,13 @@ module.exports = {
 			data.servers[guild] = {};
 		}
 
-		let text;
+		let text = "Les réponses aux nombres sont ";
 		if (data.servers[guild].isNumberEnabled == null) {
 			data.servers[guild].isNumberEnabled = true;
-			text = "Les réponses aux nombres sont activées";
+			text += "activées";
 		} else {
 			delete data.servers[guild].isNumberEnabled;
-			text = "Les réponses aux nombres sont désactivées";
+			text += "désactivées";
 		}
 
 		let json = JSON.stringify(data, null, "\t");

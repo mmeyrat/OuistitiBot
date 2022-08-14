@@ -14,13 +14,13 @@ module.exports = {
 			data.servers[guild] = {};
 		}
 
-		let text;
+		let text = "Les mots par défaut sont ";
 		if (data.servers[guild].isDefaultDisabled == null) {
 			data.servers[guild].isDefaultDisabled = true;
-			text = "Les mots par défaut sont désactivés";
+			text += "désactivés";
 		} else {
 			delete data.servers[guild].isDefaultDisabled;
-			text = "Les mots par défaut sont activés";
+			text += "activés";
 		}
 
 		let json = JSON.stringify(data, null, "\t");
