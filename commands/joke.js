@@ -13,14 +13,7 @@ module.exports = {
 		let types = ["global", "dev", "dark", "limit", "beauf", "blondes"];
 
 		if (args[0] != null && !types.includes(args[0]) || args[1] != null) {
-			let embed = new EmbedBuilder()
-				.setColor("#AC8A4D")
-				.setDescription("Veuillez utiliser un type de blague existant (voir `o!aide`)");
-			
-			msg.reply({
-				embeds: [embed],
-				allowedMentions: { repliedUser: false }
-			});
+			sendMsg(msg, "Veuillez utiliser un type de blague existant (voir `o!aide`)");
 			return;
 		} else if (types.includes(args[0])) {
 			url = `type/${args[0]}/random`;
@@ -30,7 +23,14 @@ module.exports = {
 			headers: {
 				"Authorization": `Bearer ${config.JOKE_TOKEN}`,
 			}
-		}).then(response => response.json());
+		}).then((response) => {
+			return response.json();
+		});
+
+		if (json.error != null) {
+			sendMsg(msg, "Jeton Blagues API incorrect");
+			return;
+		}
 
 		let embed = new EmbedBuilder()
 			.setColor("#AC8A4D")
@@ -42,4 +42,16 @@ module.exports = {
 			allowedMentions: { repliedUser: false }
 		});
 	}
+}
+
+function sendMsg(msg, text) {
+	const { EmbedBuilder } = require("discord.js");
+	let embed = new EmbedBuilder()
+		.setColor("#AC8A4D")
+		.setDescription(text);
+	
+	msg.reply({
+		embeds: [embed],
+		allowedMentions: { repliedUser: false }
+	});
 }

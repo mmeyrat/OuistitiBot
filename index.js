@@ -43,7 +43,9 @@ client.on("ready", () => {
 		
 		topggApi.postStats({
 			serverCount: client.guilds.cache.size
-		})
+		}).catch((error) => {
+			console.error(error);
+		});
 		
 		let data = JSON.parse(fs.readFileSync("data.json", "utf8"));
 		const guildsIds = client.guilds.cache.map(guild => guild.id);
