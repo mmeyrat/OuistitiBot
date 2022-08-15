@@ -36,7 +36,7 @@ module.exports = {
 		let links = "• [Inviter le bot](https://discord.com/api/oauth2/authorize?client_id=1007028483505012807&permissions=534723951680&scope=bot) \n"
 			+ "• [Voter pour le bot](https://top.gg/bot/725370669289963521/vote) \n"			
 			+ "• [Le serveur Discord OuistitiBot](https://discord.gg/3DbtncXpjC) \n"
-			+ "• [La page Github](https://github.com/mmeyrat/OuistitiBot) \n"
+			+ "• [La page GitHub](https://github.com/mmeyrat/OuistitiBot) \n"
 			+ "• [Le site Blagues API](https://www.blagues-api.fr/)"
 
 		embed.addFields({ name: "Liens utiles :", value: links })

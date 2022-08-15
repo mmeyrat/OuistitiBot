@@ -40,7 +40,7 @@ module.exports = {
 			if (word.includes(args[1])) {
 				for(let i = 0; i < word.length; i++){ 
 					if (word[i] == args[1]) { 
-						data.servers[guild].words[args[0]][i] = [args[2]];
+						data.servers[guild].words[args[0]][i] = args[2];
 					}
 				}
 			} else {
