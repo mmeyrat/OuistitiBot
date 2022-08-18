@@ -72,10 +72,33 @@ client.on("messageCreate", msg => {
 		let command = args.shift().toLowerCase();
 		let subMsg = msg.toString().split(" ");
 		let processedMsg = subMsg[subMsg.length - 1].normalize("NFD").replace(/[\u0300-\u036f]|[\.\?\!\)]+$/g, "").toLowerCase();
+
+		if (args.length > 1) {
+			let isQuote = false;
+			let id = -1;
+
+			for (let i = 1; i < args.length; i++) {
+				let currentArg = args[i]; 
+
+				if (isQuote) { 
+					args[id] += ` ${args[i]}`;
+					delete args[i];
+					console.log(args);
+				}
+				if (!isQuote && currentArg.startsWith("\"")) {
+					isQuote = true;
+					id = i;
+				}
+				if (isQuote && currentArg.endsWith("\"")) {
+					isQuote = false;
+					args[id] = args[id].replaceAll("\"", "");
+				}
+			}
+			args = args.filter(e => e != null)
+		}
 		
 		if (msg.toString().toLowerCase().startsWith("o!") && client.commands.has(command)) {
 			client.commands.get(command).execute(msg, guild, args);
-			
 		} else {
 			let data = JSON.parse(fs.readFileSync("data.json", "utf8"));
 			
