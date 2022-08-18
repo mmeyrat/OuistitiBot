@@ -67,7 +67,6 @@ client.on("ready", () => {
 client.on("messageCreate", msg => {
 	if (!msg.author.bot && (msg.channel.type !== "dm")) {
 		let channel = client.channels.cache.get(msg.channel.id);
-		let guild = msg.guild.id;
 		let args = msg.content.slice(2).split(" ");
 		let command = args.shift().toLowerCase();
 		let subMsg = msg.toString().split(" ");
@@ -98,13 +97,14 @@ client.on("messageCreate", msg => {
 		}
 		
 		if (msg.toString().toLowerCase().startsWith("o!") && client.commands.has(command)) {
-			client.commands.get(command).execute(msg, guild, args);
+			client.commands.get(command).execute(msg, msg.guild.id, args);
 		} else {
 			let data = JSON.parse(fs.readFileSync("data.json", "utf8"));
+			let guild = data.servers[msg.guild.id];
 			
-			if (data.servers[guild] != null && data.servers[guild].delay != null && data.servers[guild].lastMsg != null) { // check if there's delay
-				let lastMessageDate = new Date(data.servers[guild].lastMsg);
-				lastMessageDate.setMinutes(lastMessageDate.getMinutes() + data.servers[guild].delay);
+			if (guild != null && guild.delay != null && guild.lastMsg != null) { // check if there's delay
+				let lastMessageDate = new Date(guild.lastMsg);
+				lastMessageDate.setMinutes(lastMessageDate.getMinutes() + guild.delay);
 				let currentDate = new Date(Date.now());
 				
 				if (currentDate <= lastMessageDate) {
@@ -115,28 +115,28 @@ client.on("messageCreate", msg => {
 			if (processedMsg in data.words) { // check if msg is a default word
 				let wordArray = data.words[processedMsg];
 				
-				if (data.servers[guild] != null) {
-					if (data.servers[guild].isDefaultDisabled != null) {
-						if (data.servers[guild].words != null && processedMsg in data.servers[guild].words) {
-							channel.send(data.servers[guild].words[processedMsg][Math.floor(Math.random() * data.servers[guild].words[processedMsg].length)]);
+				if (guild != null) {
+					if (guild.isDefaultDisabled != null) {
+						if (guild.words != null && processedMsg in guild.words) {
+							channel.send(guild.words[processedMsg][Math.floor(Math.random() * guild.words[processedMsg].length)]);
 						}
 						return;
 					}
 					
-					if (data.servers[guild].words != null && processedMsg in data.servers[guild].words) {
-						wordArray = data.words[processedMsg].concat(data.servers[guild].words[processedMsg]);				
+					if (guild.words != null && processedMsg in guild.words) {
+						wordArray = data.words[processedMsg].concat(guild.words[processedMsg]);				
 					}
 				}
 				
 				channel.send(wordArray[Math.floor(Math.random() * wordArray.length)]);
-			} else if (data.servers[guild] != null && data.servers[guild].words != null && processedMsg in data.servers[guild].words) {
-				channel.send(data.servers[guild].words[processedMsg][Math.floor(Math.random() * data.servers[guild].words[processedMsg].length)]);
-			} else if (data.servers[guild] != null && data.servers[guild].isNumberEnabled && processedMsg != "" && !isNaN(processedMsg)) {
+			} else if (guild != null && guild.words != null && processedMsg in guild.words) {
+				channel.send(guild.words[processedMsg][Math.floor(Math.random() * guild.words[processedMsg].length)]);
+			} else if (guild != null && guild.isNumberEnabled && processedMsg != "" && !isNaN(processedMsg)) {
 				channel.send(String(Math.round(Number(processedMsg) + 1)));
 			}
 			
-			if (data.servers[guild] != null && data.servers[guild].delay != null) {
-				data.servers[guild]["lastMsg"] = new Date(Date.now());
+			if (guild != null && guild.delay != null) {
+				guild["lastMsg"] = new Date(Date.now());
 				let newLastDate = JSON.stringify(data, null, "\t");
 				fs.writeFileSync("data.json", newLastDate);
 			}
