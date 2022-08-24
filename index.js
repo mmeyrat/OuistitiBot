@@ -53,7 +53,9 @@ client.on("ready", () => {
 		for (let i = 0; i < guildsIds.length; i++) {
 			if (data.servers[guildsIds[i]] != null && data.servers[guildsIds[i]].lastMsg != null) {
 				let lastMessageDate = new Date(data.servers[guildsIds[i]].lastMsg);
-				lastMessageDate.setMonth(lastMessageDate.getMonth() + 6);
+				let monthNb = 4;
+				
+				lastMessageDate.setMonth(lastMessageDate.getMonth() + monthNb);
 				let currentDate = new Date(Date.now());
 				
 				if (currentDate >= lastMessageDate) {
@@ -84,26 +86,30 @@ client.on("messageCreate", msg => {
 					delete args[i];
 					console.log(args);
 				}
+
 				if (!isQuote && currentArg.startsWith("\"")) {
 					isQuote = true;
 					id = i;
 				}
+				
 				if (isQuote && currentArg.endsWith("\"")) {
 					isQuote = false;
 					args[id] = args[id].replaceAll("\"", "");
 				}
 			}
+
 			args = args.filter(e => e != null)
 		}
 		
 		if (msg.toString().toLowerCase().startsWith("o!") && client.commands.has(command)) {
-			client.commands.get(command).execute(msg, msg.guild.id, args);
+			client.commands.get(command).execute(msg, msg.guild.id, args);			
 		} else {
 			let data = JSON.parse(fs.readFileSync("data.json", "utf8"));
 			let guild = data.servers[msg.guild.id];
 			
 			if (guild != null && guild.delay != null && guild.lastMsg != null) { // check if there's delay
 				let lastMessageDate = new Date(guild.lastMsg);
+				
 				lastMessageDate.setMinutes(lastMessageDate.getMinutes() + guild.delay);
 				let currentDate = new Date(Date.now());
 				
@@ -120,6 +126,7 @@ client.on("messageCreate", msg => {
 						if (guild.words != null && processedMsg in guild.words) {
 							channel.send(guild.words[processedMsg][Math.floor(Math.random() * guild.words[processedMsg].length)]);
 						}
+						
 						return;
 					}
 					
@@ -135,7 +142,7 @@ client.on("messageCreate", msg => {
 				channel.send(String(Math.round(Number(processedMsg) + 1)));
 			}
 			
-			if (guild != null && guild.delay != null) {
+			if (guild != null) {
 				guild["lastMsg"] = new Date(Date.now());
 				let newLastDate = JSON.stringify(data, null, "\t");
 				fs.writeFileSync("data.json", newLastDate);
