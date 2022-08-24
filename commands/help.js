@@ -13,11 +13,13 @@ module.exports = {
 			.setTitle("Liste des commandes");
 		let commandList = [];
 
+		// load every command in an array
 		fs.readdirSync("./commands").forEach(file => {
 			let command = require("./" + file);
 			commandList.push(command);
 		});
 
+		// sort alphabetically the commands by their titles
 		commandList.sort((a, b) => a.title.localeCompare(b.title))
 
 		commandList.forEach(command => {

@@ -8,6 +8,7 @@ module.exports = {
 		const fs = require("fs");
 		const { EmbedBuilder } = require("discord.js");
 
+		// check if the arguments are correct
 		if (args[0] == null || args[1] != null || isNaN(args[0]) || args[0] < 0 || args[0] > 10000) {
 			let embed = new EmbedBuilder()
 				.setColor("#AC8A4D")
@@ -23,9 +24,9 @@ module.exports = {
 		}
 
 		if (args[0] != 0) {
-			data.servers[guild].delay = Number(args[0]);
+			data.servers[guild].delay = Number(args[0]); // store the delay
 		} else if (data.servers[guild].delay != null) {
-			delete data.servers[guild].delay;
+			delete data.servers[guild].delay; // remove the delay if equal to 0
 		}
 
 		let json = JSON.stringify(data, null, "\t");

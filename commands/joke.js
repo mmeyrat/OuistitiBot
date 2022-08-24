@@ -12,6 +12,7 @@ module.exports = {
 		let url = "random";
 		let types = ["global", "dev", "dark", "limit", "beauf", "blondes"];
 
+		// check if the arguments are correct
 		if (args[0] != null && !types.includes(args[0]) || args[1] != null) {
 			sendMsg(msg, "Veuillez utiliser un type de blague existant (voir `o!aide`)");
 			return;
@@ -27,7 +28,7 @@ module.exports = {
 			return response.json();
 		});
 
-		if (json.error != null) {
+		if (json.error != null) { // check if the api sent a correct response
 			sendMsg(msg, "Jeton Blagues API incorrect");
 			return;
 		}

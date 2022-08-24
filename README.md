@@ -2,7 +2,7 @@
 
 OuistitiBot est une application Discord ayant pour vocation d'envoyer des messages en réponse aux vôtres. Si vous aimez les blagues du type "quoi ? - feur" ce bot est fait pour vous.  
   
-Lorsque la fin d'un de vos messages envoyés dans un salon est reconnue par le bot, il vous répondra de manière appropriée. Par défaut, le bot incorpore 10 mots, mais il est possible de rajouter jusqu'à 30 mots personnalisés par serveur. Également, d'autres commandes permettent de gérer ce trublion et personnifier votre expérience.  
+Lorsque la fin d'un de vos messages envoyés dans un salon est reconnue par le bot, il vous répondra de manière appropriée. Par défaut, le bot incorpore 10 mots, mais il est possible de rajouter jusqu'à 30 mots personnalisés par serveur. Également, d'autres commandes permettent de gérer ce trublion et de personnifier votre expérience.  
   
 [Inviter le bot à votre serveur](https://discord.com/api/oauth2/authorize?client_id=1007028483505012807&permissions=534723951680&scope=bot)
   
@@ -31,7 +31,7 @@ Ce bot est actuellement en ligne, mais il est possible de l'installer localement
 
 Pour le bon fonctionnement de ce projet, il est indispensable d'avoir réalisé les étapes suivantes :
 
-1. Installer Node.js v18.7.0.
+1. Installer Node.js v18 ou supérieur.
 2. Créer une application sur le [portail développeur Discord](https://discord.com/developers/).
 3. Récupérer un jeton [Blagues API](https://www.blagues-api.fr/) (facultatif).
 4. Ajouter l'application sur [Top.gg](https://top.gg/) (facultatif).

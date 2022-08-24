@@ -7,12 +7,13 @@ module.exports = {
 	execute(msg, guild, args) {
 		const fs = require("fs");
 
+		// check if the arguments are correct
 		if (args[0] == null || args[1] == null || args[2] != null) {
 			sendMsg(msg, "Nombre d'arguments incorrect (voir `o!aide`)");
 			return;
 		}
 
-		let processedWord = args[0].normalize("NFD").replace(/[\u0300-\u036f]|[\.\?\!\)]+$/g, "").toLowerCase();
+		let processedWord = args[0].normalize("NFD").replace(/[\u0300-\u036f]|[\.\?\!\)]+$/g, "").toLowerCase(); // remove accents, cedillas...
 
 		if (processedWord == null || processedWord.length > 40 || args[1].length > 40 || processedWord.length == 0) {
 			sendMsg(msg, "Mot ou suffixe incorrect (voir `o!aide`)");
