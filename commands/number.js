@@ -15,12 +15,12 @@ module.exports = {
 		}
 
 		let text = "Les réponses aux nombres sont ";
-		if (data.servers[guild].isNumberEnabled == null) {
-			data.servers[guild].isNumberEnabled = true;
-			text += "activées";
-		} else {
+		if (data.servers[guild].isNumberEnabled) {
 			delete data.servers[guild].isNumberEnabled;
 			text += "désactivées";
+		} else {
+			data.servers[guild].isNumberEnabled = true;
+			text += "activées";
 		}
 
 		let json = JSON.stringify(data, null, "\t");
