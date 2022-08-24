@@ -89,7 +89,6 @@ client.on("messageCreate", msg => {
 				if (isQuote) { 
 					args[id] += ` ${args[i]}`; // concat arguments
 					delete args[i];
-					console.log(args);
 				}
 
 				if (!isQuote && currentArg.startsWith("\"")) {

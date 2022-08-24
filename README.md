@@ -61,7 +61,7 @@ Après avoir mis en place les prérequis, il est nécessaire de suivre chacune d
 
 [Rejoindre le serveur Discord OuistitiBot](https://discord.gg/3DbtncXpjC)
 
-[Page Top.gg](https://top.gg/bot/725370669289963521)
+[Page Top.gg](https://top.gg/bot/1007028483505012807)
 
 ----
 
