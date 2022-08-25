@@ -4,7 +4,9 @@ OuistitiBot est une application Discord ayant pour vocation d'envoyer des messag
   
 Lorsque la fin d'un de vos messages envoyés dans un salon est reconnue par le bot, il vous répondra de manière appropriée. Par défaut, le bot incorpore 10 mots, mais il est possible de rajouter jusqu'à 30 mots personnalisés par serveur. Également, d'autres commandes permettent de gérer ce trublion et de personnifier votre expérience.  
   
-[Inviter le bot à votre serveur](https://discord.com/api/oauth2/authorize?client_id=1007028483505012807&permissions=534723951680&scope=bot)
+[Inviter le bot à votre serveur](https://discord.com/api/oauth2/authorize?client_id=1007028483505012807&permissions=534723951680&scope=bot)  
+  
+[![Discord Bots](https://top.gg/api/widget/servers/1007028483505012807.svg)(https://top.gg/bot/1007028483505012807)  
   
 
 ## Commandes
