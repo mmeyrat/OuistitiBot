@@ -6,7 +6,7 @@ Lorsque la fin d'un de vos messages envoyés dans un salon est reconnue par le b
   
 [Inviter le bot à votre serveur](https://discord.com/api/oauth2/authorize?client_id=1007028483505012807&permissions=534723951680&scope=bot)  
   
-[![Discord Bots](https://top.gg/api/widget/servers/1007028483505012807.svg)(https://top.gg/bot/1007028483505012807)  
+[![Discord Bots](https://top.gg/api/widget/servers/1007028483505012807.svg)](https://top.gg/bot/1007028483505012807)  
   
 
 ## Commandes
